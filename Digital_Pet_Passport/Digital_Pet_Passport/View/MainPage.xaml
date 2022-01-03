@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Digital_Pet_Passport.MainPage">
+
+    <StackLayout >
+
+        <StackLayout Padding="10">
+
+            <CollectionView x:Name="Pets" Margin="0" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            
+                       
+                        <Frame Padding="10" HasShadow="True" CornerRadius="10">
+                            <StackLayout Padding="10">
+                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Frame CornerRadius="10" Padding="0">
+                                        <Image Aspect="AspectFill" HeightRequest="120" Source="{Binding Avatar}"></Image>
+                                    </Frame>
+                                </StackLayout>
+                                <StackLayout Padding="10, 20, 10, 10">
+                                    <Label FontSize="25" Margin="0, 0, 0, 20" HorizontalTextAlignment="Center"
+                                           Text="{Binding Name}"></Label>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout HorizontalOptions="FillAndExpand" >
+                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Breed}"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="FillAndExpand" >
+                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Weight}"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="FillAndExpand" >
+                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Age}" ></Label>
+                                        </StackLayout>
+                                        
+                                        
+                                        
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Button HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
+                                CornerRadius="10" TextColor="LightGreen" FontSize="20" 
+                                BorderWidth=".8" BorderColor="LightGreen" Text="Просмотр" Clicked="Button_Clicked"></Button>
+                            </StackLayout>
+                        </Frame>
+                        
+                         </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
+          
+        </StackLayout>
+       
+    </StackLayout>
+
+</ContentPage>

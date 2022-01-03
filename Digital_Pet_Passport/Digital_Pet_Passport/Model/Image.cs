@@ -13,6 +13,17 @@ namespace Digital_Pet_Passport.Model
 
         public int PetsId { get; set; }
 
-        public Model.Pet Pet { get; set; }
+        public Pet Pet { get; set; }
+
+
+        /// <summary>
+        /// Сохранение изображения в приложении
+        /// </summary>
+        public void SaveImg()
+        {
+
+        }
+
+
     }
 }

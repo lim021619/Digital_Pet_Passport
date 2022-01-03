@@ -100,9 +100,9 @@ namespace Digital_Pet_Passport.Context
         /// Находит питомца по номеру
         /// </summary>
         /// <param name="id">номер</param>
-        /// <param name="birhday">нужно ли подгружать данные даты рождения</param>
+        /// <param name="downloadInerProp">нужно ли подгружать данные даты рождения</param>
         /// <returns></returns>
-        public Model.Pet GetPetById(int id, bool birhday = false)
+        public Model.Pet GetPetById(int id, bool downloadInerProp)
         {
 
             Model.Pet pet = new Model.Pet(String.Empty);
@@ -112,9 +112,9 @@ namespace Digital_Pet_Passport.Context
                 lock (App.LokingContext)
                 {
                     Context?.DetachAllEntities();
-                    if (birhday)
+                    if (downloadInerProp)
                     {
-                        pet = Context?.Pets?.Include(p => p.BirthDay).FirstOrDefault(i => i.Id == id);
+                        pet = Context?.Pets?.Include(p => p.BirthDay).Include(p => p.Images).FirstOrDefault(i => i.Id == id);
                     }
                     else
                     {
@@ -138,9 +138,9 @@ namespace Digital_Pet_Passport.Context
         /// Находит питомца в бд по кличке. Поиск регистронезависим.
         /// </summary>
         /// <param name="name">кличка</param>
-        /// <param name="birhday">нужно ли подгружать дату рождения</param>
+        /// <param name="downloadInerProp">нужно ли подгружать дату рождения</param>
         /// <returns></returns>
-        public Model.Pet GetPetById(string name, bool birhday = false)
+        public Model.Pet GetPetById(string name, bool downloadInerProp)
         {
 
             Model.Pet pet = new Model.Pet(String.Empty);
@@ -151,9 +151,9 @@ namespace Digital_Pet_Passport.Context
                 {
                     Context?.DetachAllEntities();
 
-                    if (birhday)
+                    if (downloadInerProp)
                     {
-                        pet = Context?.Pets?.Include(p => p.BirthDay).FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
+                        pet = Context?.Pets?.Include(p => p.BirthDay).Include(p => p.Images).FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
                     }
                     else
                     {
@@ -177,16 +177,16 @@ namespace Digital_Pet_Passport.Context
         /// <summary>
         /// Возвращает список всех питомцев
         /// </summary>
-        /// <param name="birthdy">нужно ли подгружать данные даты рождения</param>
+        /// <param name="downloadInerProp">нужно ли подгружать данные даты рождения</param>
         /// <returns></returns>
-        public List<Model.Pet> GetListPets(bool birthdy)
+        public List<Model.Pet> GetListPets(bool downloadInerProp)
         {
             List<Model.Pet> pets = new List<Model.Pet>();
 
             lock(App.LokingContext)
             {
                 Context?.DetachAllEntities();
-                if (birthdy) pets = Context?.Pets.Include(p => p.BirthDay)?.ToList();
+                if (downloadInerProp) pets = Context?.Pets.Include(p => p.BirthDay)?.Include(p => p.Images).ToList();
                 else
                 {
                     pets = Context?.Pets?.ToList();

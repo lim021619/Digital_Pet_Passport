@@ -34,7 +34,10 @@ namespace Digital_Pet_Passport.Model
         /// Вес животного
         /// </summary>
         public double Weight { get; set; }
-
+        /// <summary>
+        /// Определяет пол животного False - кабель, True - сука
+        /// </summary>
+        public bool Sex { get; set; }
         /// <summary>
         /// Дата рождения
         /// </summary>

@@ -15,6 +15,8 @@ namespace Digital_Pet_Passport.Context
         public DbSet<Pet> Pets { get; set; }
         public DbSet<BirthDay> Birthdays { get; set; }
 
+        public DbSet<Image> Images { get; set; }
+
         public Context()
         {
             SQLitePCL.Batteries_V2.Init();

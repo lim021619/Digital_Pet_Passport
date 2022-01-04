@@ -22,7 +22,7 @@ namespace Digital_Pet_Passport
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
             //InitContext();
-            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.Silver};
+            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.LightGray};
         }
 
         protected override void OnStart()

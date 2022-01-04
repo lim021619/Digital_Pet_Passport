@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Digital_Pet_Passport.MainPage"    
              >
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" >
+            <Image HeightRequest="40" WidthRequest="40" Source="DefoultPetImage.png"></Image>
+            <Label Text="Мои Питомцы" FontSize="22" TextColor="White" VerticalTextAlignment="Center" />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
-    
     <StackLayout >
 
         <StackLayout Padding="10">
@@ -24,28 +29,59 @@
                                     </Frame>
                                 </StackLayout>
                                 <StackLayout Padding="10, 20, 10, 10">
-                                    <Label FontSize="25" Margin="0, 0, 0, 20" HorizontalTextAlignment="Center"
-                                           Text="{Binding Name}"></Label>
 
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout HorizontalOptions="FillAndExpand" >
-                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Breed}"></Label>
-                                        </StackLayout>
-                                        <StackLayout HorizontalOptions="FillAndExpand" >
-                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Weight}"></Label>
-                                        </StackLayout>
-                                        <StackLayout HorizontalOptions="FillAndExpand" >
-                                            <Label FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Age}" ></Label>
-                                        </StackLayout>
-                                        
-                                        
-                                        
-                                    </StackLayout>
+                                      
+                                    
+                                        <Label FontSize="25" Margin="0, 0, 0, 20" HorizontalTextAlignment="Center"
+                                           Text="{Binding Name}"></Label>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Frame HasShadow="True" Padding="0" Margin="0" HorizontalOptions="FillAndExpand" 
+                                                   Grid.Row="0" 
+                                                   Grid.Column="0">
+                                                <StackLayout   VerticalOptions="CenterAndExpand">
+                                                    <Image Source="CatDreedAndKind.png" HeightRequest="35"
+                                                    ></Image>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Breed}"></Label>
+                                                </StackLayout>
+                                            </Frame>
+
+                                            <Frame HasShadow="True" HorizontalOptions="FillAndExpand" 
+                                                   Grid.Row="0" 
+                                                   Grid.Column="1">
+                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                                    <Image Source="Weighticon.png" HeightRequest="35"
+                                                    ></Image>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Weight}"></Label>
+                                                </StackLayout>
+                                            </Frame>
+
+                                            <Frame HasShadow="True" HorizontalOptions="FillAndExpand" 
+                                                   Grid.Row="0" 
+                                                   Grid.Column="2">
+                                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
+                                                    <Image Source="AgeIcon.png" HeightRequest="35"
+                                                    ></Image>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Age}" ></Label>
+                                                </StackLayout>
+                                            </Frame>
+
+                                        </Grid>
+
                                 </StackLayout>
 
                                 <Button HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
-                                CornerRadius="10" TextColor="LightGreen" FontSize="20" 
-                                BorderWidth=".8" BorderColor="LightGreen" Text="Просмотр" Clicked="Button_Clicked"></Button>
+                                CornerRadius="10" TextColor="#FF755B" FontSize="20" 
+                                BorderWidth=".8" BorderColor="#FF755B" Text="Просмотр" Clicked="Button_Clicked"></Button>
                             </StackLayout>
                         </Frame>
                         

@@ -22,10 +22,9 @@ namespace Digital_Pet_Passport
             Content.BindingContext = this;
             Pets.ItemsSource = PetsCollection;
             OperationContext = new Context.OperationContext();
-            Title = "Мои Питомцы";
-
-            OperationContext.AddPet(new Model.Pet("Ласка") { Age = 3, Breed = "Сенергети", Kind = "Кошка", Sex = true, Weight = 4.9});
-
+            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация"});
+            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком"});
+            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении"});
         }
 
         

@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Digital_Pet_Passport.MainPage">
+             x:Class="Digital_Pet_Passport.MainPage"    
+             >
 
+    
     <StackLayout >
 
         <StackLayout Padding="10">
@@ -15,7 +17,8 @@
                        
                         <Frame Padding="10" HasShadow="True" CornerRadius="10">
                             <StackLayout Padding="10">
-                                <StackLayout HorizontalOptions="CenterAndExpand">
+                                    <Image HeightRequest="25" HorizontalOptions="EndAndExpand" Source="{Binding PathSex}"></Image>
+                                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0, -35, 0, 0">
                                     <Frame CornerRadius="10" Padding="0">
                                         <Image Aspect="AspectFill" HeightRequest="120" Source="{Binding Avatar}"></Image>
                                     </Frame>

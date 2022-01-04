@@ -21,8 +21,8 @@ namespace Digital_Pet_Passport
             InitializeComponent();
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
-           //InitContext();
-            MainPage = new NavigationPage(new MainPage());
+            //InitContext();
+            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.Silver};
         }
 
         protected override void OnStart()
@@ -37,7 +37,7 @@ namespace Digital_Pet_Passport
         {
         }
 
-        void Init()
+        void Init() 
         {
             InitContextAsync();
         }

@@ -17,9 +17,14 @@ namespace Digital_Pet_Passport.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            
+
             Logic.BaseWorkFiles.ExPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
 
             LoadApplication(new App());
+
+            Window.SetStatusBarColor(Android.Graphics.Color.LightGray);
+            
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

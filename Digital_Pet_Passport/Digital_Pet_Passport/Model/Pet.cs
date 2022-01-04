@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Digital_Pet_Passport.Model
@@ -17,6 +18,9 @@ namespace Digital_Pet_Passport.Model
         public string Avatar { get; set; }
 
         public  List<Image> Images { get; set; }
+
+        [NotMapped]
+        public string PathSex { get; set; }
 
         public Pet(string name)
         {

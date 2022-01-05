@@ -136,11 +136,9 @@ namespace Digital_Pet_Passport
             }
         }
 
-        private void EmptyListPets_Clicked_1(object sender, EventArgs e)
+        private async void EmptyListPets_Clicked_1(object sender, EventArgs e)
         {
-            new Context.OperationContext().AddPet(new Model.Pet("ласка"));
-            App.CountPets += 1;
-            DownloadPets();
+            await Navigation.PushAsync(new View.ViewCreatePet.CreatePage());
             ///Открытие окна для добавления нового питомца
         }
 

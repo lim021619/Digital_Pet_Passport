@@ -5,7 +5,13 @@
              >
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" >
-            <Image HeightRequest="40" WidthRequest="40" Source="DefoultPetImage.png"></Image>
+            
+                <ImageButton Source="DefoultPetImage.png" WidthRequest="40" HeightRequest="40" Padding="0"
+                             Margin="0"
+                             Clicked="EmptyListPets_Clicked_1">
+
+                </ImageButton>
+            
             <Label Text="Мои Питомцы" FontSize="22" TextColor="White" VerticalTextAlignment="Center" />
         </StackLayout>
     </NavigationPage.TitleView>

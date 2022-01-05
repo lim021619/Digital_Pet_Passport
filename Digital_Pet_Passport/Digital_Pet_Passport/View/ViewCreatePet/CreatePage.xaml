@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Digital_Pet_Passport.View.ViewCreatePet.CreatePage"
+             Title="Добавление питомца">
+
+    <ContentPage.Content>
+        <ScrollView Padding="0" x:Name="RootCont">
+
+            <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" Padding="10">
+                <Frame>
+                    <StackLayout Padding="0" >
+
+                        <StackLayout HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal">
+                            
+                            <Image Source="FemaleIcone.png" WidthRequest="25" HeightRequest="25"></Image>
+                            
+                            <RadioButton x:Name="sexbut" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                            <RadioButton></RadioButton>
+
+                            <Image Source="MaleImage.png" WidthRequest="25" HeightRequest="25"></Image>
+                        </StackLayout>
+
+                        <StackLayout Margin="0, -10, 0, 0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Кличка"
+                           HorizontalOptions="Start" 
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="18" FontAttributes="Bold"></Label>
+                                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                           FontSize="16" TextColor="Gray"
+                                   x:Name="Name"></Entry>
+                            </StackLayout>
+                            <StackLayout Padding="0" Orientation="Horizontal">
+                                <Label Text="Вид"
+                           HorizontalOptions="Start" 
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="18" FontAttributes="Bold"></Label>
+                                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                           FontSize="16" TextColor="Gray" x:Name="Kind"></Entry>
+                            </StackLayout>
+                            <StackLayout Padding="0" Orientation="Horizontal">
+                                <Label Text="Порода"
+                           HorizontalOptions="Start" 
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="18" FontAttributes="Bold"></Label>
+                                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                           FontSize="16" TextColor="Gray" x:Name="Breed"></Entry>
+                            </StackLayout>
+                        </StackLayout>
+                      
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Text="Вес"
+                           HorizontalOptions="Start" 
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="18" FontAttributes="Bold"></Label>
+                                <Entry 
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="EndAndExpand"
+                                    Keyboard="Numeric"
+                                    ClearButtonVisibility="WhileEditing"
+                                    WidthRequest="85"
+                                    HorizontalTextAlignment="Center" x:Name="Weight"
+                            FontSize="16" TextColor="Gray"></Entry>
+
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                <Label FontAttributes="Bold" FontSize="18"
+                                   VerticalOptions="CenterAndExpand">Дата рождения</Label>
+                                <DatePicker TextColor="Gray" HorizontalOptions="EndAndExpand" x:Name="BirthDay"></DatePicker>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout>
+                    <Frame>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="18"
+                           Text="Выберите аватар"></Label>
+                            <Button Text="Выбрать" BorderWidth=".8" BorderColor="#FF755B"
+                            BackgroundColor="White"
+                            CornerRadius="10"
+                            HorizontalOptions="EndAndExpand"
+                            TextColor="#FF755B"></Button>
+                        </StackLayout>
+                    </Frame>
+                    <Frame Padding="0"  Margin="0, 20, 0, 20"  HasShadow="True"
+                   HorizontalOptions="CenterAndExpand"
+                   HeightRequest="200" WidthRequest="200">
+                        <Image Source="{Binding ImagePathAvatar}" Aspect="AspectFill">
+
+                        </Image>
+                    </Frame>
+
+                    <Frame HasShadow="True" WidthRequest="200" CornerRadius="10" 
+                           HorizontalOptions="EndAndExpand"
+                       Padding="0">
+                        <Button CornerRadius="10" BackgroundColor="Transparent"
+                            TextColor="#FF755B"
+                        Text="Далее" 
+                                Clicked="Button_Clicked"></Button>
+                    </Frame>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

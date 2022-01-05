@@ -46,12 +46,12 @@ namespace Digital_Pet_Passport.Model
         /// Метод инициализирующий возраст животоного
         /// </summary>
         /// <returns></returns>
-        public DateTime SetAge()
+        public void SetAge(DateTime dateTime)
         {
-            DateTime dt = new DateTime(Year,Mounth, Day);
-            TimeSpan reslt = dt.Subtract(DateTime.Now);
+            Day = dateTime.Day;
+            Year = dateTime.Year;
+            Mounth = dateTime.Month;
 
-            return dt;
         }
 
     }

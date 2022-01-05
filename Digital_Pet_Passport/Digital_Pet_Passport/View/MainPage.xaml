@@ -12,12 +12,38 @@
 
     <StackLayout >
 
-        <StackLayout Padding="10">
+        <Frame x:Name="LabelNoPetsNewCreate" HorizontalOptions="CenterAndExpand" 
+               VerticalOptions="CenterAndExpand" 
+               CornerRadius="10" 
+               HasShadow="True" 
+               IsVisible="False" IsEnabled="False"
+               Padding="30, 30, 30, 5">
+        
+            <StackLayout HorizontalOptions="Fill" Spacing="20">
+                <Label FontSize="20" TextColor="Silver" Text="Пока нет ни одного питомца"></Label>
+                <Button HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
+                        BorderWidth=".8" 
+                        Padding="0" BackgroundColor="White" 
+                        CornerRadius="10" Clicked="EmptyListPets_Clicked_1"
+                        Margin="0, 0, -25, 0"
+                        BorderColor="#FF755B"
+                        TextColor="#FF755B" 
+                        Text="Добавить"></Button>
+            </StackLayout>
+        </Frame>
 
-            <CollectionView x:Name="Pets" Margin="0" SelectionMode="None">
+
+        <StackLayout x:Name="ContList"  
+                   
+                     Padding="10" HorizontalOptions="FillAndExpand">
+
+
+            <CollectionView x:Name="Pets"  Margin="0" SelectionMode="Single"
+                            ItemsSource="{Binding PetsCollection}"
+                            SelectionChanged="Pets_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10">
+                        <StackLayout Padding="10" BackgroundColor="Transparent">
                             
                        
                         <Frame Padding="10" HasShadow="True" CornerRadius="10">
@@ -79,9 +105,14 @@
 
                                 </StackLayout>
 
-                                <Button HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
+
+                                    <Frame HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
+                                CornerRadius="10" HasShadow="False" BorderColor="#FF755B" Padding="10">
+                                        <Label TextColor="#FF755B" FontSize="20" Text="Просмотр"></Label>
+                                    </Frame>
+                                <!--<Button HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
                                 CornerRadius="10" TextColor="#FF755B" FontSize="20" 
-                                BorderWidth=".8" BorderColor="#FF755B" Text="Просмотр" Clicked="Button_Clicked"></Button>
+                                BorderWidth=".8" BorderColor="#FF755B" Text="Просмотр" Clicked="Button_Clicked"></Button>-->
                             </StackLayout>
                         </Frame>
                         

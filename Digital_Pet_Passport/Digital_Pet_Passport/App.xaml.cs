@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -16,11 +17,13 @@ namespace Digital_Pet_Passport
         /// </summary>
         public static object LokingContext = new object();
 
+        public static int CountPets { get; set; }
         public App()
         {
             InitializeComponent();
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
+
             //InitContext();
             MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.LightGray};
         }
@@ -51,6 +54,7 @@ namespace Digital_Pet_Passport
         {
             lock (LokingContext) {
                 Contextdb = new Context.Context();
+                CountPets = Contextdb.Pets.ToList().Count;
             }
             
         }

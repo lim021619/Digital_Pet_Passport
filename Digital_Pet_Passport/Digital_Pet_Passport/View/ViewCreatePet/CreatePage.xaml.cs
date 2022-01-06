@@ -36,6 +36,7 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             ImagePathAvatar = "DefoultPetImage.png";
             RootCont.BindingContext = this;
             sexbut.IsChecked = true;
+            
 
         }
 
@@ -76,7 +77,14 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new View.ViewDirectory.DirectoryPage(this));
+            if (NamePets != String.Empty && NamePets != null)
+            {
+                await Navigation.PushAsync(new View.ViewDirectory.DirectoryPage(this));
+            }
+            else
+            {
+               await DisplayAlert("Предупреждение","Сначало укажите кличку", "Понятно");
+            }
         }
 
         private void Label_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

@@ -54,10 +54,11 @@
                        
                         <Frame Padding="10" HasShadow="True" CornerRadius="10">
                             <StackLayout Padding="10">
-                                    <Image HeightRequest="25" HorizontalOptions="EndAndExpand" Source="{Binding PathSex}"></Image>
+                                    <Image HeightRequest="25" HorizontalOptions="EndAndExpand" 
+                                           Source="{Binding PathSex}" Aspect="AspectFill"></Image>
                                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0, -35, 0, 0">
-                                    <Frame CornerRadius="10" Padding="0">
-                                        <Image Aspect="AspectFill" HeightRequest="120" Source="{Binding Avatar}"></Image>
+                                        <Frame CornerRadius="10" HeightRequest="150" WidthRequest="150" Padding="0">
+                                        <Image Aspect="AspectFill"  Source="{Binding Avatar}"></Image>
                                     </Frame>
                                 </StackLayout>
                                 <StackLayout Padding="10, 20, 10, 10">

@@ -49,6 +49,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
 
             if (creatp != null)
             {
+                
                 Model.Image image = new Model.Image();
                 creatp.ImagePathAvatar = creatp.Pet.Avatar = image.SaveImg(PathImage, creatp.NamePets);
               
@@ -114,7 +115,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
                       
                         Title = $"Выбран файл {dirAndFil.Name}";
                         btnAdd.IsEnabled = true;
-                        
+                            
                             PathImage = dirAndFil.Path;
                         
 

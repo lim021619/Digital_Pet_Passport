@@ -11,9 +11,11 @@
                     <StackLayout Spacing="20">
                         <Frame>
                             <StackLayout Orientation="Horizontal">
-                                <Frame  Padding="0" CornerRadius="15" HorizontalOptions="StartAndExpand">
-                                    <Image Source="{Binding PathNewImage}" Aspect="AspectFit"
-                                       WidthRequest="80" HeightRequest="80"></Image>
+                                <Frame  Padding="0" CornerRadius="15" 
+                                        WidthRequest="120" HeightRequest="120"
+                                        HorizontalOptions="StartAndExpand">
+                                    <Image Source="{Binding PathNewImage}" Aspect="AspectFill" 
+                                       ></Image>
                                 </Frame>
                                 <ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                                     <Label FontSize="18" Text="{Binding ImageName}"></Label>

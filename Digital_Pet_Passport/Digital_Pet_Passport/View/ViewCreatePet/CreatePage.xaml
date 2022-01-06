@@ -96,7 +96,7 @@
                     <Frame CornerRadius="50" Padding="0" Margin="0, 20, 0, 20"  HasShadow="True"
                    HorizontalOptions="CenterAndExpand" 
                    HeightRequest="200" WidthRequest="200">
-                        <Image Source="{Binding ImagePathAvatar}" Aspect="Fill">
+                        <Image Source="{Binding ImagePathAvatar}" Aspect="AspectFill">
 
                         </Image>
                     </Frame>

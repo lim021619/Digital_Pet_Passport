@@ -95,10 +95,19 @@ namespace Digital_Pet_Passport
                             {
                                 f.OutAge = "?";
                             }
-                            //if (item.Avatar == String.Empty || item.Avatar == null)
-                            //{
-                            //    f.Avatar = "DefoultPetImage.png";
-                            //}
+                            System.IO.FileInfo fileInfo = new System.IO.FileInfo(item.Avatar);
+                            
+                            if (item.Avatar == String.Empty || item.Avatar == null)
+                            {
+                                f.Avatar = "DefoultPetImage.png";
+                            }
+                            else
+                            {
+                                if (!fileInfo.Exists)
+                                {
+                                    f.Avatar = "DefoultPetImage.png";
+                                }
+                            }
                             //if (f.Sex)
                             //{
                             //    f.PathSex = "FemaleIcone.png";

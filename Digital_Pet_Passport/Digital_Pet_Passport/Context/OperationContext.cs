@@ -197,6 +197,30 @@ namespace Digital_Pet_Passport.Context
             return pets;
         }
 
+        /// <summary>
+        /// Асинхронно обновляет запись в бвзе данных о питомце переданном в параметре
+        /// </summary>
+        /// <param name="pet">Питомец данные которого нужно обновить </param>
+        public async void UpdatePetAsync(Model.Pet pet)
+        {
+            await System.Threading.Tasks.Task.Run(() => UpdatePet(pet));
+        }
+
+
+        /// <summary>
+        /// Обновляет запись в бвзе данных о питомце переданном в параметре
+        /// </summary>
+        /// <param name="pet">Питомец данные которого нужно обновить </param>
+        public void UpdatePet(Model.Pet pet)
+        {
+            lock (App.LokingContext)
+            {
+                App.Contextdb.Update(pet);
+                App.Contextdb.SaveChanges();
+                App.Contextdb.DetachAllEntities();
+            }
+        }
+
     }
 }
 

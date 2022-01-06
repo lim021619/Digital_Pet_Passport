@@ -21,6 +21,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
 
         string PathImage = string.Empty;
         
+        
         public DirectoryPage(Page page)
         {
 
@@ -28,6 +29,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
 
             Externalstorage = new Logic.DirectorysExternalstorage();
             InitializeComponent();
+            Title = "Корневая папка";
             RootCont.BindingContext = this;
             lock (Externalstorage.lockobject)
             {
@@ -50,6 +52,17 @@ namespace Digital_Pet_Passport.View.ViewDirectory
                 Model.Image image = new Model.Image();
                 creatp.ImagePathAvatar = creatp.Pet.Avatar = image.SaveImg(PathImage, creatp.NamePets);
               
+            }
+            else
+            {
+               var settingpet = CreatPage as View.SettingPet.ViewSettingPetPage;
+                if (settingpet != null)
+                {
+                    Model.Image image = new Model.Image();
+                    image.RemoveImage(settingpet.PathNewImage);
+                    settingpet.PathNewImage = image.SaveImg(PathImage, settingpet.Pet.Name);
+                    settingpet.ImageName = new FileInfo(settingpet.PathNewImage).Name;
+                }
             }
             ExitAllAPage();
         }
@@ -76,6 +89,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
             CreatPage = page;
             Externalstorage = new Logic.DirectorysExternalstorage(path);
             InitializeComponent();
+            Title = "Файл не выбран";
             RootCont.BindingContext = this;
             lock (Externalstorage.lockobject)
             {
@@ -100,11 +114,9 @@ namespace Digital_Pet_Passport.View.ViewDirectory
                       
                         Title = $"Выбран файл {dirAndFil.Name}";
                         btnAdd.IsEnabled = true;
-                        var cp = CreatPage as ViewCreatePet.CreatePage;
-                        if (cp != null)
-                        {
+                        
                             PathImage = dirAndFil.Path;
-                        }
+                        
 
                     }
                     else

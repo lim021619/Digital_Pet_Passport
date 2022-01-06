@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Pet_Passport.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,16 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
         private string imagePathAvatar;
         public Model.Pet Pet { get; set; }
 
-        public  string NamePets { get; set; }
-        public string ImagePathAvatar { get => imagePathAvatar; set
+        public string NamePets { get; set; }
+        public string ImagePathAvatar
+        {
+            get => imagePathAvatar; set
             {
                 imagePathAvatar = value;
                 OnPropertyChanged("ImagePathAvatar");
             }
-            }
+        }
+
         public CreatePage()
         {
             InitializeComponent();
@@ -38,7 +42,7 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+         
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

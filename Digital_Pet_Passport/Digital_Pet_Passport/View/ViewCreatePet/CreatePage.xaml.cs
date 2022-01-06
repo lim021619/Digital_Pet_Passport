@@ -13,8 +13,9 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
     public partial class CreatePage : ContentPage
     {
         private string imagePathAvatar;
-
         public Model.Pet Pet { get; set; }
+
+        public  string NamePets { get; set; }
         public string ImagePathAvatar { get => imagePathAvatar; set
             {
                 imagePathAvatar = value;
@@ -34,7 +35,11 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
         }
 
-      
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+        }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
@@ -54,9 +59,30 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             if (radioButton != null)
             {
                 Pet.Sex = radioButton.IsChecked;
+                if (Pet.Sex)
+                {
+                    Pet.PathSex = "FemaleIcone.png";
+                }
+                else
+                {
+                    Pet.PathSex = "MaleImage.png";
+                }
             }
         }
 
-        
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new View.ViewDirectory.DirectoryPage(this));
+        }
+
+        private void Label_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NamePets = Name.Text;
+        }
     }
 }

@@ -17,7 +17,33 @@ namespace Digital_Pet_Passport.Logic
         /// </summary>
         public List<FileInfo> Files { get; set; }
 
+        public object lockobject = new object();
+
+        public string Path { get; set; }
+
+        public List<Model.ViewExternalStorageDirAndFil> DirAndFils { get; set; }
+
         object lockScaning = new object();
+
+        public DirectorysExternalstorage()
+        {
+            InitProp();
+
+           
+                ScaningStoragAsync();
+            
+            
+        }
+
+        public DirectorysExternalstorage(string path)
+        {
+            InitProp();
+            Path = path;
+            ScaningStoragAsync();
+
+
+        }
+
         /// <summary>
         /// Инициализация экземпляра класса
         /// </summary>
@@ -25,6 +51,9 @@ namespace Digital_Pet_Passport.Logic
         {
             Directories = new List<DirectoryInfo>();
             Files = new List<FileInfo>();
+            DirAndFils = new List<Model.ViewExternalStorageDirAndFil>();
+            Path = string.Empty;
+          
         }
         /// <summary>
         /// Асинхронно инициализирует свойства директории и файлы по найденным объктам из переданого пути. Если не передать путь то проинициализирует свойтсва экземпляра 
@@ -32,21 +61,38 @@ namespace Digital_Pet_Passport.Logic
         /// </summary>
         public async void ScaningStoragAsync()
         {
-            await System.Threading.Tasks.Task.Run(() =>ScaningStorag());
+            await System.Threading.Tasks.Task.Run(() => { 
+            
+                lock(lockobject)
+                {
+                    ScaningStorag(Path);
+                }
+
+            });
         }
 
         /// <summary>
         /// Инициализирует свойства директории и файлы по найденным объктам из переданого пути. Если не передать путь то проинициализирует свойтсва экземпляра 
         /// объектами найденными в корневой папке устройства.
         /// </summary>
-        public void ScaningStorag(string path = "")
+        public void ScaningStorag(string path)
         {
             if (path == string.Empty)
             {
                 path = Expath;
             }
 
-            (Directories, Files) = ScaningStorageByPath(Expath);
+            (Directories, Files) = ScaningStorageByPath(path);
+
+                foreach (var item in Directories)
+                {
+                    DirAndFils.Add(new Model.ViewExternalStorageDirAndFil(item.FullName, false, item.Name));
+                }
+                foreach (var item in Files)
+                {
+                    DirAndFils.Add(new Model.ViewExternalStorageDirAndFil(item.FullName, true, item.Name));
+                }
+            
         }
 
         /// <summary>

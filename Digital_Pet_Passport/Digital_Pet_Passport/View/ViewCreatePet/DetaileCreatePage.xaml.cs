@@ -16,8 +16,23 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
         public DetaileCreatePage(Model.Pet pet)
         {
-            InitializeComponent();
             Pet = pet;
+            InitializeComponent();
+            RootCont.BindingContext = this;
+            
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            ToolbarItems.Add(new ToolbarItem() { Text = "Добавление" });
+
+            await Task.Run(() =>
+            {
+                new Context.OperationContext().AddPet(Pet);
+            });
+
+            ToolbarItems.Clear();
+            Navigation.PopToRootAsync();
         }
     }
 }

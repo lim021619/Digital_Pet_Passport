@@ -51,7 +51,7 @@ namespace Digital_Pet_Passport.Model
 
         
         [NotMapped]
-        public string OutAge { get { return outAge; } set
+        public string OutAge { get { SetOutAge(); return outAge; } set
             {
                
                 outAge = value;
@@ -60,6 +60,7 @@ namespace Digital_Pet_Passport.Model
         public Animal()
         {
             BirthDay = new BirthDay();
+            SetOutAge();
         }
 
         void SetOutAge()

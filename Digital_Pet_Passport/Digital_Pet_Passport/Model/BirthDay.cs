@@ -32,6 +32,13 @@ namespace Digital_Pet_Passport.Model
         /// </summary>
         public Animal Animal { get; set; }
 
+        public string BirthDayDate { get; set; }
+
+
+        public BirthDay()
+        {
+           if(Year != 0 && Mounth != 0 && Day != 0) BirthDayDate = InitBirthDayDate();
+        }
 
         /// <summary>
         /// Возвращает дату рождения питомца
@@ -40,6 +47,7 @@ namespace Digital_Pet_Passport.Model
         public DateTime GetBirthDay()
         {
             return new DateTime(Year, Mounth, Day);
+
         }
 
         /// <summary>
@@ -51,7 +59,12 @@ namespace Digital_Pet_Passport.Model
             Day = dateTime.Day;
             Year = dateTime.Year;
             Mounth = dateTime.Month;
+            BirthDayDate = InitBirthDayDate();
+        }
 
+        string InitBirthDayDate()
+        {
+           return  new DateTime(Year, Mounth, Day).ToLongDateString();
         }
 
     }

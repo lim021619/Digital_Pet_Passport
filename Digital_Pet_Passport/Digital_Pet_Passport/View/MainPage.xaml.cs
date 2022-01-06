@@ -86,23 +86,27 @@ namespace Digital_Pet_Passport
                         ContList.FadeTo(1, 1000);
                         LabelNoPetsNewCreate.IsVisible = false;
                         ContList.IsVisible = true;
-                        List<Model.Pet> pets = OperationContext.GetListPets(false);
+                        List<Model.Pet> pets = OperationContext.GetListPets(true);
 
                         foreach (Model.Pet item in pets)
                         {
                             var f = item;
-                            if (item.Avatar == String.Empty || item.Avatar == null)
+                            if (f.OutAge == null)
                             {
-                                f.Avatar = "DefoultPetImage.png";
+                                f.OutAge = "?";
                             }
-                            if (f.Sex)
-                            {
-                                f.PathSex = "FemaleIcone.png";
-                            }
-                            else
-                            {
-                                f.PathSex = "MaleImage.png";
-                            }
+                            //if (item.Avatar == String.Empty || item.Avatar == null)
+                            //{
+                            //    f.Avatar = "DefoultPetImage.png";
+                            //}
+                            //if (f.Sex)
+                            //{
+                            //    f.PathSex = "FemaleIcone.png";
+                            //}
+                            //else
+                            //{
+                            //    f.PathSex = "MaleImage.png";
+                            //}
 
 
                             PetsCollection.Add(f);
@@ -125,11 +129,13 @@ namespace Digital_Pet_Passport
 
         }
 
-        private void Pets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Pets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection.Count != 0)
             {
                 Model.Pet pet = e.CurrentSelection[0] as Model.Pet;
+
+                await Navigation.PushAsync(new View.ViewDetailePet.DetailePage(pet));
                 ///Создание окна просмотра и редактирования элемента
                 CollectionView colview = (CollectionView)sender;
                 colview.SelectedItem = null;

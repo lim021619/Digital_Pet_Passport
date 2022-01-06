@@ -16,7 +16,7 @@
                             
                             <Image Source="FemaleIcone.png" WidthRequest="25" HeightRequest="25"></Image>
                             
-                            <RadioButton x:Name="sexbut" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                            <RadioButton x:Name="sexbut"  CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
                             <RadioButton></RadioButton>
 
                             <Image Source="MaleImage.png" WidthRequest="25" HeightRequest="25"></Image>
@@ -26,9 +26,10 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Кличка"
                            HorizontalOptions="Start" 
+                                       
                            VerticalOptions="CenterAndExpand"
                            FontSize="18" FontAttributes="Bold"></Label>
-                                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                                <Entry TextChanged="Name_TextChanged" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
                            FontSize="16" TextColor="Gray"
                                    x:Name="Name"></Entry>
                             </StackLayout>
@@ -84,17 +85,18 @@
                         <StackLayout Orientation="Horizontal">
                             <Label FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="18"
                            Text="Выберите аватар"></Label>
-                            <Button Text="Выбрать" BorderWidth=".8" BorderColor="#FF755B"
+                            <Button Text="Выбрать" BorderWidth=".8"
+                                   Clicked="Button_Clicked_1"  BorderColor="#FF755B"
                             BackgroundColor="White"
                             CornerRadius="10"
                             HorizontalOptions="EndAndExpand"
                             TextColor="#FF755B"></Button>
                         </StackLayout>
                     </Frame>
-                    <Frame Padding="0"  Margin="0, 20, 0, 20"  HasShadow="True"
-                   HorizontalOptions="CenterAndExpand"
+                    <Frame CornerRadius="50" Padding="0" Margin="0, 20, 0, 20"  HasShadow="True"
+                   HorizontalOptions="CenterAndExpand" 
                    HeightRequest="200" WidthRequest="200">
-                        <Image Source="{Binding ImagePathAvatar}" Aspect="AspectFill">
+                        <Image Source="{Binding ImagePathAvatar}" Aspect="Fill">
 
                         </Image>
                     </Frame>

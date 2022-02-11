@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Digital_Pet_Passport.View.ViewDirectory.DirectoryPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="RootCont">
+
+           
+            
+            <CollectionView x:Name="ViewStorage" SelectionMode="Single" SelectionChanged="ViewStorage_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal" Padding="0">
+                                <Image WidthRequest="50" HeightRequest="50" 
+                           Source="DefoultPetImage.png"
+                           HorizontalOptions="StartAndExpand"></Image>
+                                <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"
+                           TextColor="#FF755B"
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="18"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -19,8 +19,13 @@ namespace Digital_Pet_Passport.Model
 
         public  List<Image> Images { get; set; }
 
-        [NotMapped]
         public string PathSex { get; set; }
+
+
+        public Pet()
+        {
+
+        }
 
         public Pet(string name)
         {
@@ -35,8 +40,6 @@ namespace Digital_Pet_Passport.Model
             base.InitObjct();
             Images = new List<Image>();
         }
-
-
 
     }
 }

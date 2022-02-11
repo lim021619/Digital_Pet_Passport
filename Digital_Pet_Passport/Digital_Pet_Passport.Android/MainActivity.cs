@@ -24,6 +24,8 @@ namespace Digital_Pet_Passport.Droid
             LoadApplication(new App());
 
             Window.SetStatusBarColor(Android.Graphics.Color.Gray);
+
+          
             
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

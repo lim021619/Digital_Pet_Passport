@@ -5,12 +5,18 @@
              >
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" >
-            <Image HeightRequest="40" WidthRequest="40" Source="DefoultPetImage.png"></Image>
+            
+                <ImageButton Source="DefoultPetImage.png" WidthRequest="40" HeightRequest="40" Padding="0"
+                             Margin="0"
+                             Clicked="EmptyListPets_Clicked_1">
+
+                </ImageButton>
+            
             <Label Text="Мои Питомцы" FontSize="22" TextColor="White" VerticalTextAlignment="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <StackLayout >
+    <StackLayout Padding="10">
 
         <Frame x:Name="LabelNoPetsNewCreate" HorizontalOptions="CenterAndExpand" 
                VerticalOptions="CenterAndExpand" 
@@ -35,7 +41,7 @@
 
         <StackLayout x:Name="ContList"  
                    
-                     Padding="10" HorizontalOptions="FillAndExpand">
+                      HorizontalOptions="FillAndExpand">
 
 
             <CollectionView x:Name="Pets"  Margin="0" SelectionMode="Single"
@@ -43,15 +49,16 @@
                             SelectionChanged="Pets_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" BackgroundColor="Transparent">
+                        <StackLayout Padding="10" BackgroundColor="White">
                             
                        
                         <Frame Padding="10" HasShadow="True" CornerRadius="10">
                             <StackLayout Padding="10">
-                                    <Image HeightRequest="25" HorizontalOptions="EndAndExpand" Source="{Binding PathSex}"></Image>
+                                    <Image HeightRequest="25" HorizontalOptions="EndAndExpand" 
+                                           Source="{Binding PathSex}" Aspect="AspectFill"></Image>
                                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0, -35, 0, 0">
-                                    <Frame CornerRadius="10" Padding="0">
-                                        <Image Aspect="AspectFill" HeightRequest="120" Source="{Binding Avatar}"></Image>
+                                        <Frame CornerRadius="10" HeightRequest="150" WidthRequest="150" Padding="0">
+                                        <Image Aspect="AspectFill"  Source="{Binding Avatar}"></Image>
                                     </Frame>
                                 </StackLayout>
                                 <StackLayout Padding="10, 20, 10, 10">
@@ -97,7 +104,7 @@
                                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
                                                     <Image Source="AgeIcon.png" HeightRequest="35"
                                                     ></Image>
-                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Age}" ></Label>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding OutAge}" ></Label>
                                                 </StackLayout>
                                             </Frame>
 

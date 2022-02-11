@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Digital_Pet_Passport.View.SettingPet.ViewSettingPetPage">
+    <ContentPage.Content>
+        
+        <ScrollView x:Name="RootCont" Padding="0">
+
+            <StackLayout Spacing="20">
+                <Frame>
+                    <StackLayout Spacing="20">
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Frame  Padding="0" CornerRadius="15" 
+                                        WidthRequest="120" HeightRequest="120"
+                                        HorizontalOptions="StartAndExpand">
+                                    <Image Source="{Binding PathNewImage}" Aspect="AspectFill" 
+                                       ></Image>
+                                </Frame>
+                                <ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Label FontSize="18" Text="{Binding ImageName}"></Label>
+                                </ScrollView>
+                                
+                                <Button Text="Изменить" 
+                                        BorderColor="#FF755B"
+                                        TextColor="#FF755B"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="EndAndExpand"
+                                        Clicked="OpenStorageDirectory"
+                                        ></Button>
+                                
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame>
+                            <StackLayout>
+                                <Label FontSize="18" Text="Кличка" HorizontalOptions="StartAndExpand"></Label>
+                                <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Pet.Name}" 
+                                       TextChanged="Entry_TextChanged"></Entry>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame>
+                            <StackLayout>
+                                <Label FontSize="18" Text="Вид" HorizontalOptions="StartAndExpand"></Label>
+                                <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Pet.Kind}"
+                                       TextChanged="Entry_TextChanged_1"></Entry>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame>
+                            <StackLayout>
+                                <Label FontSize="18" Text="Порода" HorizontalOptions="StartAndExpand"></Label>
+                                <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
+                                       Text="{Binding Pet.Breed}" TextChanged="Entry_TextChanged_2"></Entry>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame>
+                            <StackLayout>
+                                <Label FontSize="18" Text="Вес" HorizontalOptions="StartAndExpand"></Label>
+                                <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
+                                 Text="{Binding Pet.Weight}" Keyboard="Numeric" TextChanged="Entry_TextChanged_3"></Entry>
+                            </StackLayout>
+                        </Frame>
+                        
+                    </StackLayout>
+                </Frame>
+
+                
+                    <Button HorizontalOptions="EndAndExpand" 
+                        BorderColor="#FF755B"
+                            BorderWidth=".8"
+                            Margin="20, 10"
+                        TextColor="#FF755B"
+                        CornerRadius="15"
+                        FontSize="18"
+                        BackgroundColor="Transparent"
+                        Clicked="Button_Clicked" Text="Удалить питомца"></Button>
+             
+              
+            </StackLayout>
+            
+           
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

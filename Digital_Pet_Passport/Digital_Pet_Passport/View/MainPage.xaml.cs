@@ -86,23 +86,36 @@ namespace Digital_Pet_Passport
                         ContList.FadeTo(1, 1000);
                         LabelNoPetsNewCreate.IsVisible = false;
                         ContList.IsVisible = true;
-                        List<Model.Pet> pets = OperationContext.GetListPets(false);
+                        List<Model.Pet> pets = OperationContext.GetListPets(true);
 
                         foreach (Model.Pet item in pets)
                         {
                             var f = item;
+                            if (f.OutAge == null)
+                            {
+                                f.OutAge = "?";
+                            }
+                            System.IO.FileInfo fileInfo = new System.IO.FileInfo(item.Avatar);
+                            
                             if (item.Avatar == String.Empty || item.Avatar == null)
                             {
                                 f.Avatar = "DefoultPetImage.png";
                             }
-                            if (f.Sex)
-                            {
-                                f.PathSex = "FemaleIcone.png";
-                            }
                             else
                             {
-                                f.PathSex = "MaleImage.png";
+                                if (!fileInfo.Exists)
+                                {
+                                    f.Avatar = "DefoultPetImage.png";
+                                }
                             }
+                            //if (f.Sex)
+                            //{
+                            //    f.PathSex = "FemaleIcone.png";
+                            //}
+                            //else
+                            //{
+                            //    f.PathSex = "MaleImage.png";
+                            //}
 
 
                             PetsCollection.Add(f);
@@ -125,22 +138,22 @@ namespace Digital_Pet_Passport
 
         }
 
-        private void Pets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Pets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection.Count != 0)
             {
                 Model.Pet pet = e.CurrentSelection[0] as Model.Pet;
+
+                await Navigation.PushAsync(new View.ViewDetailePet.DetailePage(pet));
                 ///Создание окна просмотра и редактирования элемента
                 CollectionView colview = (CollectionView)sender;
                 colview.SelectedItem = null;
             }
         }
 
-        private void EmptyListPets_Clicked_1(object sender, EventArgs e)
+        private async void EmptyListPets_Clicked_1(object sender, EventArgs e)
         {
-            new Context.OperationContext().AddPet(new Model.Pet("ласка"));
-            App.CountPets += 1;
-            DownloadPets();
+            await Navigation.PushAsync(new View.ViewCreatePet.CreatePage());
             ///Открытие окна для добавления нового питомца
         }
 

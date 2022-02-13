@@ -33,15 +33,24 @@ namespace Digital_Pet_Passport.View.ViewDetailePet
             InitializeComponent();
             RootCont.BindingContext = this;
             Title = $"Питомец {Pet.Name}";
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (updatePet)
-            {
-                Pet = new Context.OperationContext().GetPetById(Pet.Id, true);
-            }
+            InitPet();
+        }
+
+        private async Task InitPet()
+        {
+             await Task.Run(() => {
+                if (updatePet)
+                {
+                    Pet = new Context.OperationContext().GetPetById(Pet.Id, true);
+                }
+            });
+
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)

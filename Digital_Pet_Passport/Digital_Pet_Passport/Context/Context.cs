@@ -17,16 +17,32 @@ namespace Digital_Pet_Passport.Context
 
         public DbSet<Image> Images { get; set; }
 
+        public bool ResetDb { get; set; }   
+
         public Context()
         {
             SQLitePCL.Batteries_V2.Init();
 
+            if (ResetDb)
+            {
+                Database.EnsureDeleted();
+            }
+
+            this.Database.EnsureCreated();
+        }
+
+        public Context(bool reset)
+        {
+            SQLitePCL.Batteries_V2.Init();
+
+            Database.EnsureDeleted();
+            
             this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "PetsDb.db3");
+            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "PetsDb1.db3");
 
             optionsBuilder
                 .UseSqlite($"Filename={dbPath}");

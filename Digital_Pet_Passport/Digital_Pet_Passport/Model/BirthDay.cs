@@ -67,5 +67,17 @@ namespace Digital_Pet_Passport.Model
            return  new DateTime(Year, Mounth, Day).ToLongDateString();
         }
 
+        public int CalculateMounth(ref int NumberMounth, int ageToDay)
+        {
+
+            if (ageToDay >= DateTime.DaysInMonth(Year, Mounth))
+            {
+                ageToDay -= DateTime.DaysInMonth(Year,Mounth);
+                NumberMounth++;
+                CalculateMounth(ref NumberMounth, ageToDay);
+            }
+
+            return NumberMounth; 
+        }
     }
 }

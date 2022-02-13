@@ -113,10 +113,10 @@
                                 </StackLayout>
 
 
-                                    <Frame HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
+                                    <!--<Frame HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
                                 CornerRadius="10" HasShadow="False" BorderColor="#FF755B" Padding="10">
                                         <Label TextColor="#FF755B" FontSize="20" Text="Просмотр"></Label>
-                                    </Frame>
+                                    </Frame>-->
                                 <!--<Button HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
                                 CornerRadius="10" TextColor="#FF755B" FontSize="20" 
                                 BorderWidth=".8" BorderColor="#FF755B" Text="Просмотр" Clicked="Button_Clicked"></Button>-->

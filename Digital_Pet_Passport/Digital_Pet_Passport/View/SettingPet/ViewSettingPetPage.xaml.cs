@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -59,11 +60,11 @@ namespace Digital_Pet_Passport.View.SettingPet
 
         private async void Savechange_Clicked(object sender, EventArgs e)
         {
-            new Context.OperationContext().UpdatePetAsync(Pet);
+            new Thread(new ThreadStart(() => { new Context.OperationContext().UpdatePetAsync(Pet); })).Start();
 
             if (DeteilePage is ViewDetailePet.DetailePage d)
             {
-                d.updatePet = true;
+                d.Pet = Pet;
             }
             await Navigation.PopAsync(true);
         }

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Digital_Pet_Passport
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
         public System.Collections.ObjectModel.ObservableCollection<Model.Pet> PetsCollection { get; set; }
          List<Model.Pet> Petlists { get; set; }
@@ -27,11 +27,13 @@ namespace Digital_Pet_Passport
             SetValue(NavigationPage.BarBackgroundColorProperty, Color.Red);
             PetsCollection = new System.Collections.ObjectModel.ObservableCollection<Model.Pet>();
             Petlists = new List<Model.Pet>();
+            PetsCollection = App.AllPets;
             Content.BindingContext = this;
-            OperationContext = new Context.OperationContext();
+            //OperationContext = new Context.OperationContext();
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
+            
             //new Context.OperationContext().AddPet(new Model.Pet("ласка"));
         }
 
@@ -40,7 +42,7 @@ namespace Digital_Pet_Passport
         {
             base.OnAppearing();
 
-            if(PetsCollection.Count != 0) PetsCollection.Clear();
+            //if(PetsCollection.Count != 0) PetsCollection.Clear();
             
             DownloadPetsAsync();
             
@@ -77,58 +79,55 @@ namespace Digital_Pet_Passport
 
         async void DownloadPets()
         {
-            lock (App.LokingContext)
-            {
-                if (App.CountPets != 0)
-                {
-                    lock (petslistlock)
-                    {
-                        ContList.FadeTo(1, 1000);
-                        LabelNoPetsNewCreate.IsVisible = false;
-                        ContList.IsVisible = true;
-                        List<Model.Pet> pets = OperationContext.GetListPets(true);
-
-                        foreach (Model.Pet item in pets)
-                        {
-                            var f = item;
-                            if (f.OutAge == null)
-                            {
-                                f.OutAge = "?";
-                            }
-                            System.IO.FileInfo fileInfo = new System.IO.FileInfo(item.Avatar);
-                            
-                            if (item.Avatar == String.Empty || item.Avatar == null)
-                            {
-                                f.Avatar = "DefoultPetImage.png";
-                            }
-                            else
-                            {
-                                if (!fileInfo.Exists)
-                                {
-                                    f.Avatar = "DefoultPetImage.png";
-                                }
-                            }
-                            //if (f.Sex)
-                            //{
-                            //    f.PathSex = "FemaleIcone.png";
-                            //}
-                            //else
-                            //{
-                            //    f.PathSex = "MaleImage.png";
-                            //}
 
 
-                            PetsCollection.Add(f);
-                        }
+            //lock (App.LokingContext)
+            //{
+            //    if (App.CountPets != 0)
+            //    {
+            //        lock (petslistlock)
+            //        {
+            //            ContList.FadeTo(1, 1000);
+            //            LabelNoPetsNewCreate.IsVisible = false;
+            //            ContList.IsVisible = true;
+            //            //List<Model.Pet> pets = OperationContext.GetListPets(true);
 
-                    }
-                }
-                else
-                {
+            //            //foreach (Model.Pet item in pets)
+            //            //{
+            //            //    var f = item;
+            //            //    f.ReCalculateAge();
 
-                    InitStartView();
-                }
-            }
+            //            //    if (f.OutAge == null)
+            //            //    {
+            //            //        f.OutAge = "?";
+            //            //    }
+            //            //    System.IO.FileInfo fileInfo = new System.IO.FileInfo(item.Avatar);
+
+            //            //    if (item.Avatar == String.Empty || item.Avatar == null)
+            //            //    {
+            //            //        f.Avatar = "DefoultPetImage.png";
+            //            //    }
+            //            //    else
+            //            //    {
+            //            //        if (!fileInfo.Exists)
+            //            //        {
+            //            //            f.Avatar = "DefoultPetImage.png";
+            //            //        }
+            //            //    }
+
+
+
+            //            //    PetsCollection.Add(f);
+            //            //}
+
+            //        }
+            //    }
+            //    else
+            //    {
+
+            //        InitStartView();
+            //    }
+            //}
 
         }
 

@@ -49,7 +49,7 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
         private async void Button_Clicked(object sender, EventArgs e)
         {
             Pet.Name = Name.Text;
-            Pet.Weight = Convert.ToDouble(Weight.Text);
+            Pet.WeightValue = Convert.ToDouble(Weight.Text);
             Pet.Avatar = ImagePathAvatar;
             Pet.Breed = Breed.Text;
             Pet.Kind = Kind.Text;

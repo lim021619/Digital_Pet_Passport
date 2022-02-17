@@ -10,16 +10,20 @@ namespace Digital_Pet_Passport.Model
     /// </summary>
     public class Pet : Animal
     {
+        private string name;
+        private string avatar;
+        private string pathSex;
+
         /// <summary>
         /// Кличка
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get => name; set { name = value; OnPropertyChanged(nameof(Name)); } }
 
-        public string Avatar { get; set; }
+        public string Avatar { get => avatar; set { avatar = value; OnPropertyChanged(nameof(Avatar)); } }
 
-        public  List<Image> Images { get; set; }
+        public List<Image> Images { get; set; }
 
-        public string PathSex { get; set; }
+        public string PathSex { get => pathSex; set { pathSex = value;  OnPropertyChanged(nameof(PathSex)); }  }
 
 
         public Pet()

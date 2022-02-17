@@ -24,10 +24,11 @@ namespace Digital_Pet_Passport
         {
             InitializeComponent();
 
-            SetValue(NavigationPage.BarBackgroundColorProperty, Color.Red);
-            PetsCollection = new System.Collections.ObjectModel.ObservableCollection<Model.Pet>();
-            Petlists = new List<Model.Pet>();
-            PetsCollection = App.AllPets;
+            
+            //PetsCollection = new System.Collections.ObjectModel.ObservableCollection<Model.Pet>();
+            //Petlists = new List<Model.Pet>();
+            //PetsCollection = App.AllPets;
+            
             Content.BindingContext = this;
             //OperationContext = new Context.OperationContext();
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });

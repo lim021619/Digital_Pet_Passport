@@ -117,7 +117,7 @@ namespace Digital_Pet_Passport.View.SettingPet
             if (entry.Text != String.Empty)
             {
                 
-                Pet.Weight = Convert.ToDouble(entry.Text);
+                Pet.WeightValue = Convert.ToDouble(entry.Text);
             }
         }
     }

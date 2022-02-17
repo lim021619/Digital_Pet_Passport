@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital_Pet_Passport.Android", "Digital_Pet_Passport\Digital_Pet_Passport.Android\Digital_Pet_Passport.Android.csproj", "{B49A4B4A-FAC0-4069-8D1F-EDBE769CDC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital_Pet_Passport", "Digital_Pet_Passport\Digital_Pet_Passport\Digital_Pet_Passport.csproj", "{06482596-ED01-406E-8A7D-18345E5EA794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digital_Pet_Passport", "Digital_Pet_Passport\Digital_Pet_Passport\Digital_Pet_Passport.csproj", "{06482596-ED01-406E-8A7D-18345E5EA794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

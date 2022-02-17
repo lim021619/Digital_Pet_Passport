@@ -57,7 +57,7 @@ namespace Digital_Pet_Passport
         {
             lock (LokingContext) {
 
-                Contextdb = new Context.Context();
+                Contextdb = new Context.Context(true);
                 foreach (Model.Pet pet in new Context.OperationContext().GetListPets(true))
                 {
                     pet.ReCalculateAge();

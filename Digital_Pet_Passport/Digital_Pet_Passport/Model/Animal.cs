@@ -14,11 +14,12 @@ namespace Digital_Pet_Passport.Model
     {
         private int age;
         private string outAge;
-        private double weight;
+        private double weightValue;
         private bool sex;
         private string castration;
         private string kind;
         private string breed;
+        private int weight;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -48,7 +49,7 @@ namespace Digital_Pet_Passport.Model
         /// <summary>
         /// Вес животного
         /// </summary>
-        public double Weight { get => weight; set { weight = value; OnPropertyChanged("Weight"); } }
+        public double WeightValue { get => weightValue; set { weightValue = value; OnPropertyChanged("Weight"); } }
         /// <summary>
         /// Определяет пол животного False - кабель, True - сука
         /// </summary>
@@ -61,6 +62,10 @@ namespace Digital_Pet_Passport.Model
         public string Castration { get => castration; set { castration = value; OnPropertyChanged("Castration"); } }
 
         public List<Manipulaton> Manipulatons { get; set; }
+
+        public System.Collections.ObjectModel.ObservableCollection<Weight> HistoryWeight { get; set; }
+
+        public int LastWeightId { get => weight; set { weight = value; OnPropertyChanged(nameof(LastWeightId)); } }
 
         [NotMapped]
         public string OutAge
@@ -86,14 +91,17 @@ namespace Digital_Pet_Passport.Model
             //    }
             //}
             BirthDay = new BirthDay();
+            HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
+            
 
         }
 
 
 
+
         async void SetOutAgeAsync()
         {
-           
+
             await System.Threading.Tasks.Task.Run(() =>
             {
                 int days = age;

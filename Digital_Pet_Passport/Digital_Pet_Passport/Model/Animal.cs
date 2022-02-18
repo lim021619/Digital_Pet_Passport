@@ -99,55 +99,55 @@ namespace Digital_Pet_Passport.Model
 
 
 
-        async void SetOutAgeAsync()
-        {
+        //async void SetOutAgeAsync()
+        //{
 
-            await System.Threading.Tasks.Task.Run(() =>
-            {
-                int days = age;
-                int count = 0;
-                int birth = BirthDay.Mounth;
-                int year = BirthDay.Year;
-                int yearout = 0;
+        //    await System.Threading.Tasks.Task.Run(() =>
+        //    {
+        //        int days = age;
+        //        int count = 0;
+        //        int birth = BirthDay.Mounth;
+        //        int year = BirthDay.Year;
+        //        int yearout = 0;
 
-                while (true)
-                {
-                    if (birth == 13)
-                    {
-                        birth = 1;
-                    }
-                    int daystomounththis = DateTime.DaysInMonth(year, birth);
+        //        while (true)
+        //        {
+        //            if (birth == 13)
+        //            {
+        //                birth = 1;
+        //            }
+        //            int daystomounththis = DateTime.DaysInMonth(year, birth);
 
-                    days -= daystomounththis;
-                    if (days >= 0)
-                    {
-                        if (count < 12)
-                        {
-                            count++;
+        //            days -= daystomounththis;
+        //            if (days >= 0)
+        //            {
+        //                if (count < 12)
+        //                {
+        //                    count++;
 
-                        }
-                        else
-                        {
-                            count = 1;
-                            yearout++;
-                            year++;
-                        }
+        //                }
+        //                else
+        //                {
+        //                    count = 1;
+        //                    yearout++;
+        //                    year++;
+        //                }
 
-                        birth++;
-                    }
-                    else
-                    {
-                        days += daystomounththis;
-                        break;
-                    }
-                }
+        //                birth++;
+        //            }
+        //            else
+        //            {
+        //                days += daystomounththis;
+        //                break;
+        //            }
+        //        }
 
-                OutAge = $"{yearout} г.{count} м.{Math.Abs(days)} дн.";
+        //        OutAge = $"{yearout} г.{count} м.{Math.Abs(days)} дн.";
 
-            });
+        //    });
 
 
-        }
+        //}
 
 
         virtual protected void InitObjct()
@@ -161,21 +161,21 @@ namespace Digital_Pet_Passport.Model
             BirthDay.Animal = this;
         }
 
-        public void ReCalculateAge()
-        {
-            if (BirthDay != null)
-            {
-                TimeSpan timeSpan = TimeSpan.Zero;
-                DateTime birthday = BirthDay.GetBirthDay();
-                timeSpan = DateTime.Now.Date - birthday.Date;
-                age = ((int)timeSpan.TotalDays);
-                SetOutAgeAsync();
-            }
+        //public void ReCalculateAge()
+        //{
+        //    if (BirthDay != null)
+        //    {
+        //        TimeSpan timeSpan = TimeSpan.Zero;
+        //        DateTime birthday = BirthDay.GetBirthDay();
+        //        timeSpan = DateTime.Now.Date - birthday.Date;
+        //        age = ((int)timeSpan.TotalDays);
+        //        SetOutAgeAsync();
+        //    }
 
 
-        }
+        //}
 
-        protected void OnPropertyChanged(string prop = "")
+        public void OnPropertyChanged(string prop = "")
         {
             if (PropertyChanged != null)
             {

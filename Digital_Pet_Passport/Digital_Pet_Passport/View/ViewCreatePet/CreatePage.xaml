@@ -15,8 +15,8 @@
                             Orientation="Horizontal">
                             
                             <Image Source="FemaleIcone.png" WidthRequest="25" HeightRequest="25"></Image>
-                            
-                            <RadioButton x:Name="sexbut"  CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+
+                            <RadioButton x:Name="sexbut" IsChecked="{Binding CreatePet.Sex}"  CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
                             <RadioButton></RadioButton>
 
                             <Image Source="MaleImage.png" WidthRequest="25" HeightRequest="25"></Image>
@@ -31,7 +31,9 @@
                            FontSize="18" FontAttributes="Bold"></Label>
                                 <Entry TextChanged="Name_TextChanged" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
                            FontSize="16" TextColor="Gray"
-                                   x:Name="Name"></Entry>
+                                   x:Name="Name"
+                                       Text="{Binding CreatePet.Name}"
+                                       ></Entry>
                             </StackLayout>
                             <StackLayout Padding="0" Orientation="Horizontal">
                                 <Label Text="Вид"
@@ -39,7 +41,8 @@
                            VerticalOptions="CenterAndExpand"
                            FontSize="18" FontAttributes="Bold"></Label>
                                 <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
-                           FontSize="16" TextColor="Gray" x:Name="Kind"></Entry>
+                           FontSize="16" TextColor="Gray" x:Name="Kind" 
+                                       Text="{Binding CreatePet.Kind}"></Entry>
                             </StackLayout>
                             <StackLayout Padding="0" Orientation="Horizontal">
                                 <Label Text="Порода"
@@ -47,7 +50,8 @@
                            VerticalOptions="CenterAndExpand"
                            FontSize="18" FontAttributes="Bold"></Label>
                                 <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
-                           FontSize="16" TextColor="Gray" x:Name="Breed"></Entry>
+                           FontSize="16" TextColor="Gray" x:Name="Breed" 
+                                       Text="{Binding CreatePet.Breed}"></Entry>
                             </StackLayout>
                         </StackLayout>
                       
@@ -68,13 +72,15 @@
                                     ClearButtonVisibility="WhileEditing"
                                     WidthRequest="85"
                                     HorizontalTextAlignment="Center" x:Name="Weight"
-                            FontSize="16" TextColor="Gray"></Entry>
+                            FontSize="16" TextColor="Gray" 
+                                    Text="{Binding CreatePet.WeightValue}"></Entry>
 
                             </StackLayout>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                                 <Label FontAttributes="Bold" FontSize="18"
                                    VerticalOptions="CenterAndExpand">Дата рождения</Label>
-                                <DatePicker TextColor="Gray" HorizontalOptions="EndAndExpand" x:Name="BirthDay"></DatePicker>
+                                <DatePicker TextColor="Gray" HorizontalOptions="EndAndExpand" x:Name="BirthDay"
+                                            Date="{Binding CreatePet.BirthDay.BirthDatebinding}" ></DatePicker>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

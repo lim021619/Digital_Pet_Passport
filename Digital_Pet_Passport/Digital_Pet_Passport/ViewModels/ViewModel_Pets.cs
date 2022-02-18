@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.ComponentModel;    
 using System.Text;
 
 namespace Digital_Pet_Passport.ViewModels
@@ -22,24 +22,56 @@ namespace Digital_Pet_Passport.ViewModels
         public ViewModel_Pets()
         {
             emptyPets = string.Empty;
+            Pets = new ObservableCollection<Pet>(App.AllPets);
+            InitPetsAsync();
         }
 
         protected void InitPets()
         {
-            if (App.AllPets.Count != 0)
+            Context.OperationContext operationContext = new Context.OperationContext();
+            
+            lock (App.LokingContext)
             {
-                foreach (var item in App.AllPets)
+                foreach (var item in operationContext.GetListPets(true))
                 {
+                    item.BirthDay.SetAge(item.BirthDay.GetBirthDay());
                     Pets.Add(item);
                 }
+                //if (App.AllPets.Count != 0)
+                //{
+                //    //Pets = new ObservableCollection<Pet>();
+                //    //foreach (var item in App.AllPets)
+                //    //{
+                //    //    Pets.Add(item);
+                //    //}
+                //    Pets = new ObservableCollection<Pet>(App.AllPets);
+                //    //FillPets();
+                //}
+                //else
+                //{
+                //    EmptyPets = "Pets Empty";
+                //}
             }
-            else
+
+        }
+
+        private async void InitPetsAsync()
+        {   
+             await System.Threading.Tasks.Task.Run(InitPets);
+        }
+
+        private async void FillPets()
+        {
+
+            foreach (var item in App.AllPets)
             {
-                EmptyPets = "Pets Empty";
+                await System.Threading.Tasks.Task.Delay(500);
+
+                Pets.Add(item);
             }
         }
 
-        protected void OnPropertyChange(string prop)
+        public void OnPropertyChange(string prop)
         {
             if (PropertyChanged != null)
             {

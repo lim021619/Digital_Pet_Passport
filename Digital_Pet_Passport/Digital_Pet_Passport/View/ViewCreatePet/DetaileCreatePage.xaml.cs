@@ -31,8 +31,12 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
                 new Context.OperationContext().AddPet(Pet);
             });
 
+            
+            App.AllPets.Add(Pet);
+             
+            
             ToolbarItems.Clear();
-            Navigation.PopToRootAsync();
+           await Navigation.PopToRootAsync();
         }
     }
 }

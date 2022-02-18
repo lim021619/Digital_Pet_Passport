@@ -39,13 +39,13 @@
         </Frame>
 
 
-        <StackLayout x:Name="ContList"  
+        <StackLayout x:Name="ContList1"  
                    
                       HorizontalOptions="FillAndExpand">
 
 
             <CollectionView x:Name="Pets"  Margin="0" SelectionMode="Single"
-                            ItemsSource="{Binding PetsCollection}"
+                            ItemsSource="{Binding Pets}"
                             SelectionChanged="Pets_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -94,7 +94,7 @@
                                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                                                     <Image Source="Weighticon.png" HeightRequest="35"
                                                     ></Image>
-                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding Weight}"></Label>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding WeightValue}"></Label>
                                                 </StackLayout>
                                             </Frame>
 
@@ -104,7 +104,7 @@
                                                 <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
                                                     <Image Source="AgeIcon.png" HeightRequest="35"
                                                     ></Image>
-                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding OutAge}" ></Label>
+                                                    <Label FontSize="16" HorizontalOptions="Fill" HorizontalTextAlignment="Center"  Text="{Binding BirthDay.NowFullAge}" ></Label>
                                                 </StackLayout>
                                             </Frame>
 

@@ -9,7 +9,7 @@ namespace Digital_Pet_Passport.Model
     /// <summary>
     /// Класс отвечающий за вес животного
     /// </summary>
-    public class Weight : NotyfyPropertyChange, IContext
+    public class Weight : NotifyPropertyChange, IContext
     {
         private int kg;
         private int gramm;

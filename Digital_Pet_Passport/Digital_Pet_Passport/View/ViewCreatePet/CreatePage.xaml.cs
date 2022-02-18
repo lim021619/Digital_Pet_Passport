@@ -32,9 +32,12 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
+            
+            Content.BindingContext = new ViewModels.ViewCreatePet();
+
             Pet = new Model.Pet();
             ImagePathAvatar = "DefoultPetImage.png";
-            RootCont.BindingContext = this;
+            //RootCont.BindingContext = this;
             sexbut.IsChecked = true;
             
 
@@ -54,7 +57,9 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             Pet.Breed = Breed.Text;
             Pet.Kind = Kind.Text;
             Pet.BirthDay.SetAge(BirthDay.Date);
-            Pet.ReCalculateAge();
+            //Pet.ReCalculateAge();
+            Pet.BirthDay.InitBirthDayDate();
+            
             await Navigation.PushAsync(new View.ViewCreatePet.DetaileCreatePage(Pet));
         }
 

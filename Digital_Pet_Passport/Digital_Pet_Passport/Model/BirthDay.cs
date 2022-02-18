@@ -10,7 +10,7 @@ namespace Digital_Pet_Passport.Model
     /// <summary>
     /// Дата рождения
     /// </summary>
-    public class BirthDay : NotyfyPropertyChange, IContext
+    public class BirthDay : NotifyPropertyChange, IContext
     {
         private int allDaysLive;
         private int yearLive;
@@ -25,6 +25,8 @@ namespace Digital_Pet_Passport.Model
         private bool OnDay = false;
         private bool OnMonth = false;
         private bool OnYear = false;
+        private DateTime birthDatebinding;
+
         protected delegate void FillProp();
 
         protected event FillProp OnFillYear;
@@ -41,11 +43,11 @@ namespace Digital_Pet_Passport.Model
         /// <summary>
         /// Месяц рождения
         /// </summary>
-        public int Mounth { get => mounth; set { mounth = value; if(mounth != 0) OnFillMouth?.Invoke(); } }
+        public int Mounth { get => mounth; set { mounth = value; if (mounth != 0) OnFillMouth?.Invoke(); } }
         /// <summary>
         /// День рождения
         /// </summary>
-        public int Day { get => day; set { day = value; if(day != 0) OnFillDay?.Invoke(); } }
+        public int Day { get => day; set { day = value; if (day != 0) OnFillDay?.Invoke(); } }
         /// <summary>
         /// Id питомца
         /// </summary>
@@ -57,7 +59,7 @@ namespace Digital_Pet_Passport.Model
 
         public string BirthDayDate { get; set; }
 
-        protected bool FillPropDate { get => fillPropyDate; set { fillPropyDate = value; if(fillPropyDate) OnFillPropDate?.Invoke(); } }
+        protected bool FillPropDate { get => fillPropyDate; set { fillPropyDate = value; if (fillPropyDate) OnFillPropDate?.Invoke(); } }
 
         /// <summary>
         /// Кол-во прожитых дней(всего дней)
@@ -89,6 +91,8 @@ namespace Digital_Pet_Passport.Model
         /// </summary>
         [NotMapped]
         public bool InitLiveAgeFlag { get => initLiveAgeFlag; set { initLiveAgeFlag = value; OnPropertyChange(nameof(InitLiveAgeFlag)); } }
+        [NotMapped]
+        public DateTime BirthDatebinding { get => birthDatebinding; set { birthDatebinding = value; OnPropertyChange(nameof(BirthDatebinding)); SetAge(value); }  }
         /// <summary>
         /// Замок инициализации свойств возраста
         /// </summary>
@@ -101,6 +105,7 @@ namespace Digital_Pet_Passport.Model
             InitEvents();
             if (Year != 0 && Mounth != 0 && Day != 0) InitBirthDayDate();
             InitLiveAgeFlag = false;
+            LockLiveAge = new object();
         }
 
         protected virtual async void InitEvents()
@@ -113,7 +118,7 @@ namespace Digital_Pet_Passport.Model
                 OnFillPropDate += BirthDay_OnFillPropDate;
 
             });
-            
+
         }
 
         /// <summary>
@@ -126,7 +131,7 @@ namespace Digital_Pet_Passport.Model
 
         private void BirthDay_OnFillYear()
         {
-             OnYear = true;
+            OnYear = true;
             ChekEventFill();
         }
 
@@ -138,7 +143,7 @@ namespace Digital_Pet_Passport.Model
 
         private void BirthDay_OnFillDay()
         {
-            OnDay = true; 
+            OnDay = true;
             ChekEventFill();
         }
 
@@ -174,14 +179,15 @@ namespace Digital_Pet_Passport.Model
             Year = dateTime.Year;
             Mounth = dateTime.Month;
             BirthDayDate = InitBirthDayDate();
+
         }
         /// <summary>
         /// Инициализиурет свойство BirthDayDate и возвращает его
         /// </summary>
         /// <returns></returns>
-        string InitBirthDayDate()
+        public string InitBirthDayDate()
         {
-            if (BirthDayDate == string.Empty) return BirthDayDate = GetBirthDayDateTime().ToLongDateString();
+            if (BirthDayDate == string.Empty || BirthDayDate == null) return BirthDayDate = GetBirthDayDateTime().ToLongDateString();
             else return BirthDayDate;
         }
 
@@ -215,6 +221,7 @@ namespace Digital_Pet_Passport.Model
             }
             else
             {
+                InitBirthDayDate();
                 InitLiveAge();
                 return NowFullAge = $"{YearLive} г.{MouthLive} м.{Math.Abs(DaysLive)} дн. {AllDaysLive} всего дней";
             }

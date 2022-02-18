@@ -10,10 +10,12 @@ namespace Digital_Pet_Passport
 {
     public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
-        public System.Collections.ObjectModel.ObservableCollection<Model.Pet> PetsCollection { get; set; }
-         List<Model.Pet> Petlists { get; set; }
-        object petslistlock= new object();
-        public Context.OperationContext OperationContext { get; set; }
+        //public System.Collections.ObjectModel.ObservableCollection<Model.Pet> PetsCollection { get; set; }
+        // List<Model.Pet> Petlists { get; set; }
+        //object petslistlock= new object();
+        //public Context.OperationContext OperationContext { get; set; }
+
+        public ViewModels.ViewModel_Pets ViewModel_Pets { get; set; }
 
         /// <summary>
         /// Переменная отвечающая за показ стартового окна. 
@@ -29,8 +31,9 @@ namespace Digital_Pet_Passport
             //Petlists = new List<Model.Pet>();
             //PetsCollection = App.AllPets;
             
-            Content.BindingContext = this;
+            //Content.BindingContext = this;
             //OperationContext = new Context.OperationContext();
+            Content.BindingContext = ViewModel_Pets = new ViewModels.ViewModel_Pets();
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
@@ -39,100 +42,16 @@ namespace Digital_Pet_Passport
         }
 
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            //if(PetsCollection.Count != 0) PetsCollection.Clear();
-            
-            DownloadPetsAsync();
-            
-        }
-
-        void InitPorp()
-        {
-
-        }
-
-
-        async void DownloadPetsAsync()
-        {
-            DownloadPets();
-
-            //lock ( petslistlock)
-            //{
-            //    foreach (var item in Petlists)
-            //    {
-            //        PetsCollection.Add(item);
-            //    }
-            //}
-            
-        }
-
        async Task InitStartView()
         {
-            await ContList.FadeTo(0, 1000);
-            ContList.IsVisible = false;
+            //await ContList.FadeTo(0, 1000);
+            //ContList.IsVisible = false;
             await LabelNoPetsNewCreate.FadeTo(1, 1000);
             LabelNoPetsNewCreate.IsEnabled = LabelNoPetsNewCreate.IsVisible = true;
             
         }
 
-        async void DownloadPets()
-        {
-
-
-            //lock (App.LokingContext)
-            //{
-            //    if (App.CountPets != 0)
-            //    {
-            //        lock (petslistlock)
-            //        {
-            //            ContList.FadeTo(1, 1000);
-            //            LabelNoPetsNewCreate.IsVisible = false;
-            //            ContList.IsVisible = true;
-            //            //List<Model.Pet> pets = OperationContext.GetListPets(true);
-
-            //            //foreach (Model.Pet item in pets)
-            //            //{
-            //            //    var f = item;
-            //            //    f.ReCalculateAge();
-
-            //            //    if (f.OutAge == null)
-            //            //    {
-            //            //        f.OutAge = "?";
-            //            //    }
-            //            //    System.IO.FileInfo fileInfo = new System.IO.FileInfo(item.Avatar);
-
-            //            //    if (item.Avatar == String.Empty || item.Avatar == null)
-            //            //    {
-            //            //        f.Avatar = "DefoultPetImage.png";
-            //            //    }
-            //            //    else
-            //            //    {
-            //            //        if (!fileInfo.Exists)
-            //            //        {
-            //            //            f.Avatar = "DefoultPetImage.png";
-            //            //        }
-            //            //    }
-
-
-
-            //            //    PetsCollection.Add(f);
-            //            //}
-
-            //        }
-            //    }
-            //    else
-            //    {
-
-            //        InitStartView();
-            //    }
-            //}
-
-        }
-
-
+        
         private void Button_Clicked(object sender, EventArgs e)
         {
 

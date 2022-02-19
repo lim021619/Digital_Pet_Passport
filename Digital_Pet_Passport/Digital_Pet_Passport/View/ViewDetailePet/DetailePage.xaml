@@ -37,7 +37,7 @@
 
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Возраст</Label>
-                            <Label FontSize="20" Text="{Binding Pet.OutAge}"></Label>
+                            <Label FontSize="20" Text="{Binding Pet.BirthDay.NowFullAge}"></Label>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal">
@@ -47,7 +47,7 @@
 
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Вес</Label>
-                            <Label FontSize="20" Text="{Binding Pet.Weight}"></Label>
+                            <Label FontSize="20" Text="{Binding Pet.WeightValue}"></Label>
                         </StackLayout>
 
                     </StackLayout>

@@ -26,28 +26,60 @@ namespace Digital_Pet_Passport.Model
         private bool OnMonth = false;
         private bool OnYear = false;
         private DateTime birthDatebinding;
+        private string shortLiveNow;
+        private string birthDayDate;
 
-        protected delegate void FillProp();
+        public delegate void FillProp();
+        public delegate void FillBithDay(BirthDay birthDay);
 
         protected event FillProp OnFillYear;
         protected event FillProp OnFillMouth;
         protected event FillProp OnFillDay;
         protected event FillProp OnFillPropDate;
+        protected event FillProp OnLiveMonth;
+        protected event FillProp OnLiveDay;
+        protected event FillProp OnLiveYear;
 
+
+        public event FillBithDay OnFillBirthDate;
 
         public int Id { get; set; }
         /// <summary>
         /// Год рождения
         /// </summary>
-        public int Year { get => year; set { year = value; if (year != 0) OnFillYear?.Invoke(); } }
+        public int Year
+        {
+            get => year; set
+            {
+                year = value;
+                if (year != 0)
+                    OnFillYear?.Invoke();
+            }
+        }
         /// <summary>
         /// Месяц рождения
         /// </summary>
-        public int Mounth { get => mounth; set { mounth = value; if (mounth != 0) OnFillMouth?.Invoke(); } }
+        public int Mounth
+        {
+            get => mounth; set
+            {
+                mounth = value;
+                if (mounth != 0)
+                    OnFillMouth?.Invoke();
+            }
+        }
         /// <summary>
         /// День рождения
         /// </summary>
-        public int Day { get => day; set { day = value; if (day != 0) OnFillDay?.Invoke(); } }
+        public int Day
+        {
+            get => day; set
+            {
+                day = value;
+                if (day != 0)
+                    OnFillDay?.Invoke();
+            }
+        }
         /// <summary>
         /// Id питомца
         /// </summary>
@@ -57,9 +89,10 @@ namespace Digital_Pet_Passport.Model
         /// </summary>
         public Animal Animal { get; set; }
 
-        public string BirthDayDate { get; set; }
+        public string BirthDayDate { get => birthDayDate; set { birthDayDate = value; OnPropertyChange(nameof(BirthDayDate)); } }
 
-        protected bool FillPropDate { get => fillPropyDate; set { fillPropyDate = value; if (fillPropyDate) OnFillPropDate?.Invoke(); } }
+        [NotMapped]
+        public bool FillPropDate { get => fillPropyDate; set { fillPropyDate = value; if (fillPropyDate) OnFillPropDate?.Invoke(); } }
 
         /// <summary>
         /// Кол-во прожитых дней(всего дней)
@@ -70,17 +103,17 @@ namespace Digital_Pet_Passport.Model
         /// Кол-во прожитых лет
         /// </summary>
         [NotMapped]
-        public int YearLive { get => yearLive; set { yearLive = value; OnPropertyChange(nameof(YearLive)); } }
+        public int YearLive { get => yearLive; set { yearLive = value; OnPropertyChange(nameof(YearLive)); OnLiveYear?.Invoke(); } }
         /// <summary>
         /// Кол-во прожитых месяцев
         /// </summary>
         [NotMapped]
-        public int MouthLive { get => mouthLive; set { mouthLive = value; OnPropertyChange(nameof(MouthLive)); } }
+        public int MouthLive { get => mouthLive; set { mouthLive = value; OnPropertyChange(nameof(MouthLive)); OnLiveMonth?.Invoke(); } }
         /// <summary>
         /// Кол-во прожитых дней(дней с учетом вычета лет и месяцев)
         /// </summary>
         [NotMapped]
-        public int DaysLive { get => daysLive; set { daysLive = value; OnPropertyChange(nameof(DaysLive)); } }
+        public int DaysLive { get => daysLive; set { daysLive = value; OnPropertyChange(nameof(DaysLive)); OnLiveDay?.Invoke(); } }
         /// <summary>
         /// Строка представляющаяя информацию о возрасте
         /// </summary>
@@ -92,13 +125,32 @@ namespace Digital_Pet_Passport.Model
         [NotMapped]
         public bool InitLiveAgeFlag { get => initLiveAgeFlag; set { initLiveAgeFlag = value; OnPropertyChange(nameof(InitLiveAgeFlag)); } }
         [NotMapped]
-        public DateTime BirthDatebinding { get => birthDatebinding; set { birthDatebinding = value; OnPropertyChange(nameof(BirthDatebinding)); SetAge(value); }  }
+        public DateTime BirthDatebinding
+        {
+            get => birthDatebinding; set
+            {
+                birthDatebinding = value; OnPropertyChange(nameof(BirthDatebinding));
+
+                OnFillBirthDate?.Invoke(this);
+
+                OnDay = false;
+                OnMonth = false;
+                OnYear = false;
+                InitLiveAgeFlag = false;
+                FillPropDate = false;
+
+            }
+        }
         /// <summary>
         /// Замок инициализации свойств возраста
         /// </summary>
         object LockLiveAge { get; set; }
-
-
+        [NotMapped]
+        public string ShortLiveNow { get => shortLiveNow; set { shortLiveNow = value; OnPropertyChange(nameof(ShortLiveNow)); } }
+        [NotMapped]
+        public bool MonthLiveFlag { get; private set; }
+        [NotMapped]
+        public bool YearLiveFlag { get; private set; }
 
         public BirthDay()
         {
@@ -106,19 +158,52 @@ namespace Digital_Pet_Passport.Model
             if (Year != 0 && Mounth != 0 && Day != 0) InitBirthDayDate();
             InitLiveAgeFlag = false;
             LockLiveAge = new object();
+            BirthDatebinding = DateTime.Now;
+            MonthLiveFlag = false;
+            YearLiveFlag = false;
+
         }
+
+
 
         protected virtual async void InitEvents()
         {
-            await Task.Run(() =>
+            OnFillDay += BirthDay_OnFillDay;
+            OnFillMouth += BirthDay_OnFillMouth;
+            OnFillYear += BirthDay_OnFillYear;
+            OnFillPropDate += BirthDay_OnFillPropDate;
+
+            OnLiveYear += BirthDay_OnLiveYear;
+            OnLiveMonth += BirthDay_OnLiveMonth;
+            OnLiveDay += BirthDay_OnLiveDay;
+
+        }
+
+        private void BirthDay_OnLiveDay()
+        {
+            if (!MonthLiveFlag && !YearLiveFlag)
             {
-                OnFillDay += BirthDay_OnFillDay;
-                OnFillMouth += BirthDay_OnFillMouth;
-                OnFillYear += BirthDay_OnFillYear;
-                OnFillPropDate += BirthDay_OnFillPropDate;
+                ShortLiveNow = $"{AllDaysLive} д.";
+            }
+        }
 
-            });
+        private void BirthDay_OnLiveMonth()
+        {
+            if (MouthLive != 0)
+            {
+                ShortLiveNow += $"{MouthLive} м.";
+                MonthLiveFlag = true;
+            }
+        }
 
+        private void BirthDay_OnLiveYear()
+        {
+            if (YearLive != 0)
+            {
+                ShortLiveNow += $"{YearLive} г.";
+                YearLiveFlag = true;
+
+            }
         }
 
         /// <summary>
@@ -127,18 +212,21 @@ namespace Digital_Pet_Passport.Model
         private async void BirthDay_OnFillPropDate()
         {
             FullAgeAsync();
+
         }
 
         private void BirthDay_OnFillYear()
         {
             OnYear = true;
             ChekEventFill();
+
         }
 
         private void BirthDay_OnFillMouth()
         {
             OnMonth = true;
             ChekEventFill();
+
         }
 
         private void BirthDay_OnFillDay()
@@ -178,7 +266,7 @@ namespace Digital_Pet_Passport.Model
             Day = dateTime.Day;
             Year = dateTime.Year;
             Mounth = dateTime.Month;
-            BirthDayDate = InitBirthDayDate();
+            InitBirthDayDate();
 
         }
         /// <summary>
@@ -187,8 +275,8 @@ namespace Digital_Pet_Passport.Model
         /// <returns></returns>
         public string InitBirthDayDate()
         {
-            if (BirthDayDate == string.Empty || BirthDayDate == null) return BirthDayDate = GetBirthDayDateTime().ToLongDateString();
-            else return BirthDayDate;
+            return BirthDayDate = GetBirthDayDateTime().ToLongDateString();
+
         }
 
         /// <summary>

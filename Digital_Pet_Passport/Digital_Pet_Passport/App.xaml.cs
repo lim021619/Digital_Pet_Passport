@@ -17,12 +17,12 @@ namespace Digital_Pet_Passport
         /// Замок базы данных
         /// </summary>
         public static object LokingContext = new object();
-
-        public static Logic.Collections.CollectionPetsDigital<Model.Pet> AllPets { get; set; }
+        public static Context.OperationContext OperationContext { get; set; }
+        
         public static int CountPets { get; set; }
         public App()
         {
-            AllPets = new Logic.Collections.CollectionPetsDigital<Model.Pet>();
+        
             InitializeComponent();
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
@@ -59,13 +59,7 @@ namespace Digital_Pet_Passport
             lock (LokingContext) {
 
                 Contextdb = new Context.Context();
-                //foreach (Model.Pet pet in new Context.OperationContext().GetListPets(true))
-                //{
-                //    pet.ReCalculateAge();
-                //    AllPets.Add(pet);
-                //}
-                CountPets = AllPets.Count(); /*Contextdb.Pets.ToList().Count;*/
-
+                OperationContext = new Context.OperationContext(Contextdb);
             }
             
         }

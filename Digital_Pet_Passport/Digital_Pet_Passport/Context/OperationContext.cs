@@ -28,6 +28,11 @@ namespace Digital_Pet_Passport.Context
             }         
         }
 
+        public OperationContext(Context context)
+        {
+            Context = context;
+        }
+
         /// <summary>
         /// Добавляет одного питомца в бд
         /// </summary>

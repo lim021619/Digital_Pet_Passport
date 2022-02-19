@@ -14,11 +14,13 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
     {
         public Model.Pet Pet { get; set; }
 
-        public DetaileCreatePage(Model.Pet pet)
+        public ViewModels.ViewCreatePet ViewCreatePet { get; set; }
+
+        public DetaileCreatePage(ViewModels.ViewCreatePet pet)
         {
-            Pet = pet;
+            ViewCreatePet = pet;
             InitializeComponent();
-            RootCont.BindingContext = this;
+            Content.BindingContext = ViewCreatePet;
             
         }
 
@@ -28,15 +30,19 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
             await Task.Run(() =>
             {
-                new Context.OperationContext().AddPet(Pet);
+                new Context.OperationContext().AddPet(ViewCreatePet.CreatePet);
             });
 
-            
-            App.AllPets.Add(Pet);
-             
+
+            MainPage.ViewModel_Pets.Pets.Add(ViewCreatePet.CreatePet);
+            if (!MainPage.ViewModel_Pets.EnableDownloadCollection)
+            {
+                MainPage.ViewModel_Pets.EnableDownloadFrame = false;
+                MainPage.ViewModel_Pets.EnableDownloadCollection = true;
+            }
             
             ToolbarItems.Clear();
-           await Navigation.PopToRootAsync();
+           await Navigation.PopToRootAsync();   
         }
     }
 }

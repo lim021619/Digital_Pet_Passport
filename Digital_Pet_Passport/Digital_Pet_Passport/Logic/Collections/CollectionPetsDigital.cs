@@ -21,7 +21,7 @@ namespace Digital_Pet_Passport.Logic.Collections
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 LastAddPet = e.NewItems[e.NewItems.Count-1] as Model.Pet;
-
+                MainPage.ViewModel_Pets.Pets.Add(LastAddPet);
                 
             }
 

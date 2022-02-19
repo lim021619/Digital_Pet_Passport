@@ -12,6 +12,10 @@ namespace Digital_Pet_Passport.Model
     /// </summary>
     public class Animal : IContext, INotifyPropertyChanged
     {
+        public delegate void ChangeProperty();
+
+        public event ChangeProperty EventChangeSex;
+
         private int age;
         private string outAge;
         private double weightValue;
@@ -53,7 +57,7 @@ namespace Digital_Pet_Passport.Model
         /// <summary>
         /// Определяет пол животного False - кабель, True - сука
         /// </summary>
-        public bool Sex { get => sex; set { sex = value; OnPropertyChanged("Sex"); } }
+        public bool Sex { get => sex; set { sex = value; OnPropertyChanged("Sex"); EventChangeSex?.Invoke(); } }
         /// <summary>
         /// Дата рождения
         /// </summary>
@@ -90,6 +94,7 @@ namespace Digital_Pet_Passport.Model
             //        BirthDay = new BirthDay();
             //    }
             //}
+            
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
             

@@ -16,6 +16,8 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
         private string imagePathAvatar;
         public Model.Pet Pet { get; set; }
 
+        public ViewModels.ViewCreatePet ViewCreatePet { get; set; }
+
         public string NamePets { get; set; }
         public string ImagePathAvatar
         {
@@ -33,7 +35,7 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
             
-            Content.BindingContext = new ViewModels.ViewCreatePet();
+            Content.BindingContext = ViewCreatePet = new ViewModels.ViewCreatePet();
 
             Pet = new Model.Pet();
             ImagePathAvatar = "DefoultPetImage.png";
@@ -51,16 +53,15 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            Pet.Name = Name.Text;
-            Pet.WeightValue = Convert.ToDouble(Weight.Text);
-            Pet.Avatar = ImagePathAvatar;
-            Pet.Breed = Breed.Text;
-            Pet.Kind = Kind.Text;
-            Pet.BirthDay.SetAge(BirthDay.Date);
-            //Pet.ReCalculateAge();
-            Pet.BirthDay.InitBirthDayDate();
+            //Pet.Name = Name.Text;
+            //Pet.WeightValue = Convert.ToDouble(Weight.Text);
+            //Pet.Avatar = ImagePathAvatar;
+            //Pet.Breed = Breed.Text;
+            //Pet.Kind = Kind.Text;
+            //Pet.BirthDay.SetAge(BirthDay.Date);
+            //Pet.BirthDay.InitBirthDayDate();
             
-            await Navigation.PushAsync(new View.ViewCreatePet.DetaileCreatePage(Pet));
+            await Navigation.PushAsync(new View.ViewCreatePet.DetaileCreatePage(ViewCreatePet));
         }
 
         private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)

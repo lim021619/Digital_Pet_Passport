@@ -28,7 +28,7 @@ namespace Digital_Pet_Passport.Model
 
         public Pet()
         {
-
+            InitObjct();
         }
 
         public Pet(string name)
@@ -36,6 +36,7 @@ namespace Digital_Pet_Passport.Model
 
             InitObjct();
             Name = name;
+            
 
         }
 
@@ -43,6 +44,7 @@ namespace Digital_Pet_Passport.Model
         {
             base.InitObjct();
             Images = new List<Image>();
+            Avatar = OtherModels.PathImgPets.PathAvatar;
         }
 
     }

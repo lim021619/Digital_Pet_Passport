@@ -1,4 +1,5 @@
 ﻿using Digital_Pet_Passport.Model;
+using Digital_Pet_Passport.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,49 +14,21 @@ namespace Digital_Pet_Passport.View.ViewDetailePet
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailePage : ContentPage
     {
+        private ViewDetaile viewDetaile;
 
-        public Model.Pet Pet { get => pet; set
-            {
-                pet = value;
-                OnPropertyChanged("Pet");
-            }
-        }
-        public bool updatePet = false;
-        private Pet pet;
-
+        public ViewDetaile ViewDetaile { get => viewDetaile; set { viewDetaile = value; OnPropertyChanged(nameof(ViewDetaile)); } }
         public DetailePage()
         {
             InitializeComponent();
         }
-        public DetailePage(Model.Pet pet)
+        public DetailePage(Pet pet)
         {
-            Pet = pet;
             InitializeComponent();
-            RootCont.BindingContext = this;
-            Title = $"Питомец {Pet.Name}";
+            Content.BindingContext = ViewDetaile = new ViewDetaile(pet) { Navigation = Navigation};
+            Title = $"Питомец {ViewDetaile.Pet.Name}";
 
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            InitPet();
-        }
-
-        private async Task InitPet()
-        {
-             await Task.Run(() => {
-                if (updatePet)
-                {
-                    Pet = new Context.OperationContext().GetPetById(Pet.Id, true);
-                }
-            });
-
-        }
-
-        private async void ImageButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new View.SettingPet.ViewSettingPetPage(Pet) { DeteilePage = this});
-        }
+        
     }
 }

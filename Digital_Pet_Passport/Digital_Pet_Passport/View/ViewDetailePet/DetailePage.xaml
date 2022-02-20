@@ -20,7 +20,7 @@
                                HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand"></Image>
                             <ImageButton Source="iconsettings.png" WidthRequest="25" HeightRequest="25"
                                 BackgroundColor="Transparent"  HorizontalOptions="EndAndExpand"
-                                         Padding="0" BorderWidth="0" Margin="0" Clicked="ImageButton_Clicked" ></ImageButton>
+                                         Padding="0" BorderWidth="0" Margin="0" Command="{Binding OpenWindowSetting}" ></ImageButton>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Spacing="20">

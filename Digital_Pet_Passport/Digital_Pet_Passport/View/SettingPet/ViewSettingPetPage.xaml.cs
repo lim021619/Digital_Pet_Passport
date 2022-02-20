@@ -62,10 +62,6 @@ namespace Digital_Pet_Passport.View.SettingPet
         {
             new Thread(new ThreadStart(() => { new Context.OperationContext().UpdatePetAsync(Pet); })).Start();
 
-            if (DeteilePage is ViewDetailePet.DetailePage d)
-            {
-                d.Pet = Pet;
-            }
             await Navigation.PopAsync(true);
         }
 

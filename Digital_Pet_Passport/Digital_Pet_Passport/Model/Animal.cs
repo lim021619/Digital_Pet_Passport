@@ -32,11 +32,11 @@ namespace Digital_Pet_Passport.Model
         /// <summary>
         /// Порода
         /// </summary>
-        public string Breed { get => breed; set { breed = value; OnPropertyChanged("Breed"); } }
+        public string Breed { get => breed; set { breed = value; OnPropertyChanged(nameof(Breed)); } }
         /// <summary>
         /// Вид
         /// </summary>
-        public string Kind { get => kind; set { kind = value; OnPropertyChanged("King"); } }
+        public string Kind { get => kind; set { kind = value; OnPropertyChanged(nameof(Kind)); } }
         /// <summary>
         /// Возраст питомца в днях
         /// </summary>
@@ -46,24 +46,24 @@ namespace Digital_Pet_Passport.Model
             {
 
                 age = value;
-                OnPropertyChanged("Age");
+                OnPropertyChanged(nameof(Age));
 
             }
         }
         /// <summary>
         /// Вес животного
         /// </summary>
-        public double WeightValue { get => weightValue; set { weightValue = value; OnPropertyChanged("Weight"); } }
+        public double WeightValue { get => weightValue; set { weightValue = value; OnPropertyChanged(nameof(WeightValue)); } }
         /// <summary>
         /// Определяет пол животного False - кабель, True - сука
         /// </summary>
-        public bool Sex { get => sex; set { sex = value; OnPropertyChanged("Sex"); EventChangeSex?.Invoke(); } }
+        public bool Sex { get => sex; set { sex = value; OnPropertyChanged(nameof(Sex)); EventChangeSex?.Invoke(); } }
         /// <summary>
         /// Дата рождения
         /// </summary>
         public BirthDay BirthDay { get; set; }
 
-        public string Castration { get => castration; set { castration = value; OnPropertyChanged("Castration"); } }
+        public string Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); } }
 
         public List<Manipulaton> Manipulatons { get; set; }
 

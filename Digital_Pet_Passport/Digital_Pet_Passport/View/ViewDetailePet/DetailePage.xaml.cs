@@ -25,8 +25,7 @@ namespace Digital_Pet_Passport.View.ViewDetailePet
         {
             InitializeComponent();
             Content.BindingContext = ViewDetaile = new ViewDetaile(pet) { Navigation = Navigation};
-            Title = $"Питомец {ViewDetaile.Pet.Name}";
-
+            
         }
 
         

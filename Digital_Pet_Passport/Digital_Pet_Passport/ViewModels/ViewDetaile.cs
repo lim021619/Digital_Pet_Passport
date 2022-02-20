@@ -11,7 +11,7 @@ namespace Digital_Pet_Passport.ViewModels
     {
         private Pet myProperty;
         private ICommand openWindowSetting;
-
+        
         public Pet Pet { get => myProperty; set { myProperty = value; OnPropertyChange(nameof(Pet)); } }
 
         public ICommand OpenWindowSetting { get => openWindowSetting; set { openWindowSetting = value; OnPropertyChange(nameof(OpenWindowSetting)); } }
@@ -22,6 +22,7 @@ namespace Digital_Pet_Passport.ViewModels
         {
             Pet = pet;
             OpenWindowSetting = new Command(OpenSetting);
+            
         }
 
         private async void OpenSetting()

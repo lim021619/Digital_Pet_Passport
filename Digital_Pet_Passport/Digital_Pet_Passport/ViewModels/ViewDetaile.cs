@@ -7,16 +7,11 @@ using Xamarin.Forms;
 
 namespace Digital_Pet_Passport.ViewModels
 {
-    public class ViewDetaile : NotifyPropertyChange
+    public class ViewDetaile : BaseMVVMViewPet
     {
-        private Pet myProperty;
         private ICommand openWindowSetting;
-        
-        public Pet Pet { get => myProperty; set { myProperty = value; OnPropertyChange(nameof(Pet)); } }
-
+     
         public ICommand OpenWindowSetting { get => openWindowSetting; set { openWindowSetting = value; OnPropertyChange(nameof(OpenWindowSetting)); } }
-
-        public INavigation Navigation { get; set; }
 
         public ViewDetaile(Pet pet)
         {
@@ -25,9 +20,9 @@ namespace Digital_Pet_Passport.ViewModels
             
         }
 
-        private async void OpenSetting()
+        private void OpenSetting()
         {
-            await Navigation.PushAsync(new View.SettingPet.ViewSettingPetPage(Pet));
+            logicWindows.OpenSettingPet(Navigation, Pet);
         }
     }
 }

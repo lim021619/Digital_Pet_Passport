@@ -5,23 +5,14 @@ using System.Text;
 
 namespace Digital_Pet_Passport.ViewModels
 {
-    public class ViewCreatePet : NotifyPropertyChange
+    public class ViewCreatePet : BaseMVVMViewPet
     {
-        private Pet createPet;
-
-        /// <summary>
-        /// Добавляемый питомец
-        /// </summary>
-        public Pet CreatePet { get => createPet; set { createPet = value;  OnPropertyChange(nameof(CreatePet)); } }
-
-
-      
         public ViewCreatePet()  
         {
-            CreatePet = new Pet(); 
-            CreatePet.EventChangeSex += CreatePet_EventChangeSex;
-            CreatePet.BirthDay.OnFillBirthDate += BirthDay_OnFillBirthDate;
-            CreatePet.BirthDay.BirthDatebinding = DateTime.Now;
+            Pet = new Pet(); 
+            Pet.EventChangeSex += CreatePet_EventChangeSex;
+            Pet.BirthDay.OnFillBirthDate += BirthDay_OnFillBirthDate;
+            Pet.BirthDay.BirthDatebinding = DateTime.Now;
         }
 
         private async void BirthDay_OnFillBirthDate(BirthDay birthDay)
@@ -39,14 +30,13 @@ namespace Digital_Pet_Passport.ViewModels
 
         private async void CreatePet_EventChangeSex()
         {
-
             await System.Threading.Tasks.Task.Run(ChangeSexImage);            
         }
 
         private void ChangeSexImage()
         {
-            if (CreatePet.Sex) CreatePet.PathSex = OtherModels.PathImgPets.PathSexWooman;
-            else CreatePet.PathSex = OtherModels.PathImgPets.PathSexMan;
+            if (Pet.Sex) Pet.PathSex = OtherModels.PathImgPets.PathSexWooman;
+            else Pet.PathSex = OtherModels.PathImgPets.PathSexMan;
 
         }
     }

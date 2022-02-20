@@ -17,10 +17,7 @@ namespace Digital_Pet_Passport.View.ViewDetailePet
         private ViewDetaile viewDetaile;
 
         public ViewDetaile ViewDetaile { get => viewDetaile; set { viewDetaile = value; OnPropertyChanged(nameof(ViewDetaile)); } }
-        public DetailePage()
-        {
-            InitializeComponent();
-        }
+       
         public DetailePage(Pet pet)
         {
             InitializeComponent();

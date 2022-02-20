@@ -70,6 +70,7 @@ namespace Digital_Pet_Passport.View.SettingPet
             new Context.OperationContext().RemovePet(Pet);
             if (Pet.Avatar != "DefoultPetImage.png")
                 new Model.Image().RemoveImage(Pet.Avatar);
+            MainPage.ViewModel_Pets.Pets.Remove(Pet);
             await Navigation.PopToRootAsync(true);
 
         }

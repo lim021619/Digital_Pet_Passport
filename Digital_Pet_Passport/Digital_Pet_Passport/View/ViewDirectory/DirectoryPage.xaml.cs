@@ -51,7 +51,7 @@ namespace Digital_Pet_Passport.View.ViewDirectory
             {
                 
                 Model.Image image = new Model.Image();
-                creatp.ViewCreatePet.CreatePet.Avatar = creatp.Pet.Avatar = image.SaveImg(PathImage, creatp.NamePets);
+                creatp.ViewCreatePet.Pet.Avatar = creatp.Pet.Avatar = image.SaveImg(PathImage, creatp.NamePets);
               
             }
             else

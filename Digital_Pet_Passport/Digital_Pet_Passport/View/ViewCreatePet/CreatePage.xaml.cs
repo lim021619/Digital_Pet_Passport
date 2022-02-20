@@ -37,18 +37,11 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             
             Content.BindingContext = ViewCreatePet = new ViewModels.ViewCreatePet();
 
-            Pet = new Model.Pet();
             ImagePathAvatar = "DefoultPetImage.png";
             //RootCont.BindingContext = this;
-            sexbut.IsChecked = true;
+            
             
 
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-         
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -61,25 +54,25 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             //Pet.BirthDay.SetAge(BirthDay.Date);
             //Pet.BirthDay.InitBirthDayDate();
             
-            await Navigation.PushAsync(new View.ViewCreatePet.DetaileCreatePage(ViewCreatePet));
+            await Navigation.PushAsync(new DetaileCreatePage(ViewCreatePet.Pet));
         }
 
-        private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            RadioButton radioButton = sender as RadioButton;
-            if (radioButton != null)
-            {
-                Pet.Sex = radioButton.IsChecked;
-                if (Pet.Sex)
-                {
-                    Pet.PathSex = "FemaleIcone.png";
-                }
-                else
-                {
-                    Pet.PathSex = "MaleImage.png";
-                }
-            }
-        }
+        //private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        //{
+        //    RadioButton radioButton = sender as RadioButton;
+        //    if (radioButton != null)
+        //    {
+        //        Pet.Sex = radioButton.IsChecked;
+        //        if (Pet.Sex)
+        //        {
+        //            Pet.PathSex = "FemaleIcone.png";
+        //        }
+        //        else
+        //        {
+        //            Pet.PathSex = "MaleImage.png";
+        //        }
+        //    }
+        //}
 
         private async void Button_Clicked_1(object sender, EventArgs e)
         {

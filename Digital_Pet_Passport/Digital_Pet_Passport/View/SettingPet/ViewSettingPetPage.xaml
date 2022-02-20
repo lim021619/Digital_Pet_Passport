@@ -62,7 +62,8 @@
                             <StackLayout>
                                 <Label FontSize="18" Text="Вес" HorizontalOptions="StartAndExpand"></Label>
                                 <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
-                                 Text="{Binding Pet.WeightValue}" Keyboard="Numeric" TextChanged="Entry_TextChanged_3"></Entry>
+                                 Text="{Binding Pet.WeightValue, Mode=TwoWay, StringFormat='{}{0:F1}'}" 
+                                       Keyboard="Numeric" TextChanged="Entry_TextChanged_3"></Entry>
                             </StackLayout>
                         </Frame>
                         

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Pet_Passport.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,16 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetaileCreatePage : ContentPage
     {
-        public Model.Pet Pet { get; set; }
+        private Pet pet;
 
-        public ViewModels.ViewCreatePet ViewCreatePet { get; set; }
+        public Pet Pet { get => pet; set { pet = value; OnPropertyChanging(nameof(Pet)); } }
 
-        public DetaileCreatePage(ViewModels.ViewCreatePet pet)
+        public DetaileCreatePage(Pet pet)
         {
-            ViewCreatePet = pet;
+            Pet = pet;
             InitializeComponent();
-            Content.BindingContext = ViewCreatePet;
-            
+            Content.BindingContext = Pet;
+
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -30,19 +31,19 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
 
             await Task.Run(() =>
             {
-                new Context.OperationContext().AddPet(ViewCreatePet.CreatePet);
+                new Context.OperationContext().AddPet(Pet);
             });
 
 
-            MainPage.ViewModel_Pets.Pets.Add(ViewCreatePet.CreatePet);
+            MainPage.ViewModel_Pets.Pets.Add(Pet);
             if (!MainPage.ViewModel_Pets.EnableDownloadCollection)
             {
                 MainPage.ViewModel_Pets.EnableDownloadFrame = false;
                 MainPage.ViewModel_Pets.EnableDownloadCollection = true;
             }
-            
+
             ToolbarItems.Clear();
-           await Navigation.PopToRootAsync();   
+            await Navigation.PopToRootAsync();
         }
     }
 }

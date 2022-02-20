@@ -17,6 +17,7 @@ namespace Digital_Pet_Passport.ViewModels
 
         public BaseMVVMViewPet()
         {
+            Pet = new Pet();
             logicWindows = new OtherModels.LogicWindows();
               
         }

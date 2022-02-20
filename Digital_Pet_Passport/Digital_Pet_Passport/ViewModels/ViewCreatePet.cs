@@ -9,7 +9,6 @@ namespace Digital_Pet_Passport.ViewModels
     {
         public ViewCreatePet()  
         {
-            Pet = new Pet(); 
             Pet.EventChangeSex += CreatePet_EventChangeSex;
             Pet.BirthDay.OnFillBirthDate += BirthDay_OnFillBirthDate;
             Pet.BirthDay.BirthDatebinding = DateTime.Now;
@@ -30,6 +29,7 @@ namespace Digital_Pet_Passport.ViewModels
 
         private async void CreatePet_EventChangeSex()
         {
+
             await System.Threading.Tasks.Task.Run(ChangeSexImage);            
         }
 

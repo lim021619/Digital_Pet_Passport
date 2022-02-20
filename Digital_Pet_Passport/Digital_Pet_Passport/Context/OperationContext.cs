@@ -220,9 +220,20 @@ namespace Digital_Pet_Passport.Context
         {
             lock (App.LokingContext)
             {
-                App.Contextdb.Update(pet);
-                App.Contextdb.SaveChanges();
-                App.Contextdb.DetachAllEntities();
+                try
+                {
+
+                    App.Contextdb.Update(pet);
+                    App.Contextdb.SaveChanges();
+                    App.Contextdb.DetachAllEntities();
+
+                }
+                catch (Exception e)
+                {
+
+                    var f = e.InnerException;
+                }
+                
             }
         }
 

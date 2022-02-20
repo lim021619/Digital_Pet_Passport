@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Pet_Passport.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,19 @@ namespace Digital_Pet_Passport.View.SettingPet
     {
         private string pathNewImage;
         private string imageName;
+        private ViewSettingPet viewSetting;
+
         public Page DeteilePage { get; set; }
         public Model.Pet Pet { get; set; }
+
+
+        public ViewSettingPet ViewSetting { get => viewSetting; set { viewSetting = value; OnPropertyChanged(nameof(ViewSetting)); } }
 
         public string PathNewImage
         {
             get => pathNewImage; set
             {
-                 Pet.Avatar = pathNewImage = value;
+                Pet.Avatar = pathNewImage = value;
                 OnPropertyChanged("PathNewImage");
 
             }
@@ -38,13 +44,17 @@ namespace Digital_Pet_Passport.View.SettingPet
         public ViewSettingPetPage(Model.Pet pet)
         {
             Pet = pet;
+
+            InitializeComponent();
+            //System.IO.FileInfo fileInfo = new System.IO.FileInfo(pet.Avatar);
+            //imageName = fileInfo.Name;
             PathNewImage = pet.Avatar;
             DeteilePage = new Page();
-            InitializeComponent();
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(pet.Avatar);
-            imageName = fileInfo.Name;
-            RootCont.BindingContext = this;
             Title = $"Редакрирование Питомца";
+
+
+            Content.BindingContext = ViewSetting = new ViewSettingPet(pet);
+
             ToolbarItem savechange = new ToolbarItem();
             savechange.Clicked += Savechange_Clicked;
             savechange.Text = "Сохранить";
@@ -52,15 +62,9 @@ namespace Digital_Pet_Passport.View.SettingPet
 
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            
-        }
-
         private async void Savechange_Clicked(object sender, EventArgs e)
         {
-            new Thread(new ThreadStart(() => { new Context.OperationContext().UpdatePetAsync(Pet); })).Start();
+            new Context.OperationContext().UpdatePetAsync(Pet);
 
             await Navigation.PopAsync(true);
         }
@@ -81,41 +85,6 @@ namespace Digital_Pet_Passport.View.SettingPet
 
         }
 
-        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var entry = sender as Entry;
-            if (entry != null)
-            {
-                Pet.Name = entry.Text;
-            }
-        }
-
-        private void Entry_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-            var entry = sender as Entry;
-            if (entry != null)
-            {
-                Pet.Kind = entry.Text;
-            }
-        }
-
-        private void Entry_TextChanged_2(object sender, TextChangedEventArgs e)
-        {
-            var entry = sender as Entry;
-            if (entry != null)
-            {
-                Pet.Breed = entry.Text;
-            }
-        }
-
-        private void Entry_TextChanged_3(object sender, TextChangedEventArgs e)
-        {
-            var entry = sender as Entry;
-            if (entry.Text != String.Empty)
-            {
-                
-                Pet.WeightValue = Convert.ToDouble(entry.Text);
-            }
-        }
+      
     }
 }

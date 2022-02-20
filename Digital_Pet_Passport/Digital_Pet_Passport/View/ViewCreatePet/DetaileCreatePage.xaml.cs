@@ -28,13 +28,17 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
         private async void Button_Clicked(object sender, EventArgs e)
         {
             ToolbarItems.Add(new ToolbarItem() { Text = "Добавление" });
-
+            if (Pet.AvatarObject == null)
+            {
+                Pet.AvatarObject = new ImagePet();
+                Pet.AvatarObject.PathImage = Pet.Avatar;
+            }
             await Task.Run(() =>
             {
                 new Context.OperationContext().AddPet(Pet);
             });
 
-
+            
             MainPage.ViewModel_Pets.Pets.Add(Pet);
             if (!MainPage.ViewModel_Pets.EnableDownloadCollection)
             {

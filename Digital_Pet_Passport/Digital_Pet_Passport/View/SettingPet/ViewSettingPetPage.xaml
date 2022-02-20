@@ -14,7 +14,7 @@
                                 <Frame  Padding="0" CornerRadius="15" 
                                         WidthRequest="120" HeightRequest="120"
                                         HorizontalOptions="StartAndExpand">
-                                    <Image Source="{Binding PathNewImage}" Aspect="AspectFill" 
+                                    <Image Source="{Binding Pet.Avatar}" Aspect="AspectFill" 
                                        ></Image>
                                 </Frame>
                                 <ScrollView Orientation="Horizontal" VerticalOptions="CenterAndExpand">
@@ -36,8 +36,8 @@
                             <StackLayout>
                                 <Label FontSize="18" Text="Кличка" HorizontalOptions="StartAndExpand"></Label>
                                 <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
-                                       Text="{Binding Pet.Name}" 
-                                       TextChanged="Entry_TextChanged"></Entry>
+                                       Text="{Binding Pet.Name, Mode=TwoWay}" 
+                                       ></Entry>
                             </StackLayout>
                         </Frame>
 
@@ -45,8 +45,8 @@
                             <StackLayout>
                                 <Label FontSize="18" Text="Вид" HorizontalOptions="StartAndExpand"></Label>
                                 <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
-                                       Text="{Binding Pet.Kind}"
-                                       TextChanged="Entry_TextChanged_1"></Entry>
+                                       Text="{Binding Pet.Kind, Mode=TwoWay}"
+                                       ></Entry>
                             </StackLayout>
                         </Frame>
 
@@ -54,7 +54,7 @@
                             <StackLayout>
                                 <Label FontSize="18" Text="Порода" HorizontalOptions="StartAndExpand"></Label>
                                 <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
-                                       Text="{Binding Pet.Breed}" TextChanged="Entry_TextChanged_2"></Entry>
+                                       Text="{Binding Pet.Breed, Mode=TwoWay}" ></Entry>
                             </StackLayout>
                         </Frame>
 
@@ -63,7 +63,7 @@
                                 <Label FontSize="18" Text="Вес" HorizontalOptions="StartAndExpand"></Label>
                                 <Entry FontSize="18" TextColor="Gray" HorizontalOptions="FillAndExpand"
                                  Text="{Binding Pet.WeightValue, Mode=TwoWay, StringFormat='{}{0:F1}'}" 
-                                       Keyboard="Numeric" TextChanged="Entry_TextChanged_3"></Entry>
+                                       Keyboard="Numeric" ></Entry>
                             </StackLayout>
                         </Frame>
                         

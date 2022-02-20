@@ -45,13 +45,13 @@ namespace Digital_Pet_Passport.View.ViewDirectory
 
         private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
-            var creatp = CreatPage as View.ViewCreatePet.CreatePage;
+            var creatp = CreatPage as ViewCreatePet.CreatePage;
 
             if (creatp != null)
             {
                 
                 Model.Image image = new Model.Image();
-                creatp.ViewCreatePet.Pet.Avatar = creatp.Pet.Avatar = image.SaveImg(PathImage, creatp.NamePets);
+                creatp.ViewCreatePet.Pet.Avatar = image.SaveImg(PathImage, creatp.ViewCreatePet.Pet.Name);
               
             }
             else

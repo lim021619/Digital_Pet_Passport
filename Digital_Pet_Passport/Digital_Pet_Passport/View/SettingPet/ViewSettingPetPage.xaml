@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Digital_Pet_Passport.View.SettingPet.ViewSettingPetPage">
+             x:Class="Digital_Pet_Passport.View.SettingPet.ViewSettingPetPage"
+             Title="Редакрирование Питомца">
     <ContentPage.Content>
         
         <ScrollView x:Name="RootCont" Padding="0">
@@ -26,7 +27,7 @@
                                         TextColor="#FF755B"
                                         BackgroundColor="Transparent"
                                         HorizontalOptions="EndAndExpand"
-                                        Clicked="OpenStorageDirectory"
+                                        Command="{Binding OpenDirectory}"
                                         ></Button>
                                 
                             </StackLayout>
@@ -70,18 +71,32 @@
                     </StackLayout>
                 </Frame>
 
-                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+
                     <Button HorizontalOptions="EndAndExpand" 
                         BorderColor="#FF755B"
                             BorderWidth=".8"
                             Margin="20, 10"
                         TextColor="#FF755B"
                         CornerRadius="15"
-                        FontSize="18"
+                        FontSize="14"
                         BackgroundColor="Transparent"
-                        Clicked="Button_Clicked" Text="Удалить питомца"></Button>
-             
-              
+                        Command="{Binding SaveChange}" Text="Сохранить"></Button>
+
+                    <Button HorizontalOptions="StartAndExpand" 
+                        BorderColor="#FF755B"
+                            BorderWidth=".8"
+                            Margin="20, 10"
+                        TextColor="#FF755B"
+                        CornerRadius="15"
+                        FontSize="14"
+                        BackgroundColor="Transparent"
+                        Command="{Binding DeletePet}" Text="Удалить"></Button>
+
+                </StackLayout>
+               
+
             </StackLayout>
             
            

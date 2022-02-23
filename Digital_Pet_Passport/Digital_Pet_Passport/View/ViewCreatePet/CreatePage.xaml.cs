@@ -13,87 +13,36 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePage : ContentPage
     {
-        private string imagePathAvatar;
-        public Model.Pet Pet { get; set; }
+        private ViewModels.ViewCreatePet viewCreatePet;
 
-        public ViewModels.ViewCreatePet ViewCreatePet { get; set; }
-
-        public string NamePets { get; set; }
-        public string ImagePathAvatar
-        {
-            get => imagePathAvatar; set
-            {
-                imagePathAvatar = value;
-                OnPropertyChanged("ImagePathAvatar");
-            }
-        }
+        public ViewModels.ViewCreatePet ViewCreatePet { get => viewCreatePet; set { viewCreatePet = value; OnPropertyChanged(nameof(ViewCreatePet)); } }
 
         public CreatePage()
         {
+            ViewCreatePet = new ViewModels.ViewCreatePet() { Navigation = Navigation };
             InitializeComponent();
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
-            
-            Content.BindingContext = ViewCreatePet = new ViewModels.ViewCreatePet();
 
-            ImagePathAvatar = "DefoultPetImage.png";
-            //RootCont.BindingContext = this;
-            
-            
+            Content.BindingContext = ViewCreatePet;
 
+            ViewCreatePet.EmptyNameEvent += CallErrorNameEmpty;
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Метод вызывающий всплывающее сообщение
+        /// </summary>
+        /// <param name="msg"></param>
+        public async void CallErrorNameEmpty(OtherModels.Msg msg)
         {
-            //Pet.Name = Name.Text;
-            //Pet.WeightValue = Convert.ToDouble(Weight.Text);
-            //Pet.Avatar = ImagePathAvatar;
-            //Pet.Breed = Breed.Text;
-            //Pet.Kind = Kind.Text;
-            //Pet.BirthDay.SetAge(BirthDay.Date);
-            //Pet.BirthDay.InitBirthDayDate();
-            
-            await Navigation.PushAsync(new DetaileCreatePage(ViewCreatePet.Pet));
+            await DisplayAlert(msg.Title, msg.Message, msg.TextBtn);
         }
 
-        //private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    RadioButton radioButton = sender as RadioButton;
-        //    if (radioButton != null)
-        //    {
-        //        Pet.Sex = radioButton.IsChecked;
-        //        if (Pet.Sex)
-        //        {
-        //            Pet.PathSex = "FemaleIcone.png";
-        //        }
-        //        else
-        //        {
-        //            Pet.PathSex = "MaleImage.png";
-        //        }
-        //    }
-        //}
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        protected override void OnDisappearing()
         {
-            if (NamePets != String.Empty && NamePets != null)
-            {
-                await Navigation.PushAsync(new View.ViewDirectory.DirectoryPage(this));
-            }
-            else
-            {
-               await DisplayAlert("Предупреждение","Сначало укажите кличку", "Понятно");
-            }
-        }
-
-        private void Label_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void Name_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            NamePets = Name.Text;
+            base.OnDisappearing();
         }
     }
 }

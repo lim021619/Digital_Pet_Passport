@@ -35,7 +35,7 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
             }
             await Task.Run(() =>
             {
-                new Context.OperationContext().AddPet(Pet);
+                new Context.OperationContext(App.Contextdb).AddPet(Pet);
             });
 
             

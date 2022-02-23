@@ -29,7 +29,7 @@
                                        
                            VerticalOptions="CenterAndExpand"
                            FontSize="18" FontAttributes="Bold"></Label>
-                                <Entry TextChanged="Name_TextChanged" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                                <Entry HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
                            FontSize="16" TextColor="Gray"
                                    x:Name="Name"
                                        Text="{Binding Pet.Name}"
@@ -92,7 +92,7 @@
                             <Label FontAttributes="Bold" VerticalOptions="CenterAndExpand" FontSize="18"
                            Text="Выберите аватар"></Label>
                             <Button Text="Выбрать" BorderWidth=".8"
-                                   Clicked="Button_Clicked_1"  BorderColor="#FF755B"
+                                   Command="{Binding OpenDirectory}"  BorderColor="#FF755B"
                             BackgroundColor="White"
                             CornerRadius="10"
                             HorizontalOptions="EndAndExpand"
@@ -102,7 +102,7 @@
                     <Frame CornerRadius="50" Padding="0" Margin="0, 20, 0, 20"  HasShadow="True"
                    HorizontalOptions="CenterAndExpand" 
                    HeightRequest="200" WidthRequest="200">
-                        <Image Source="{Binding Pet.Avatar}" Aspect="AspectFill">
+                        <Image Source="{Binding Pet.Avatar, Mode=OneWay}" Aspect="AspectFill">
 
                         </Image>
                     </Frame>
@@ -113,7 +113,7 @@
                         <Button CornerRadius="10" BackgroundColor="Transparent"
                             TextColor="#FF755B"
                         Text="Далее" 
-                                Clicked="Button_Clicked"></Button>
+                                Command="{Binding OpenDetaileCreate}"></Button>
                     </Frame>
 
                 </StackLayout>

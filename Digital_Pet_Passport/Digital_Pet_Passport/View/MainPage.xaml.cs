@@ -19,9 +19,9 @@ namespace Digital_Pet_Passport
         protected bool EmptyList { get; set; }
         public MainPage()
         {
+            ViewModel_Pets = new ViewModels.ViewModel_Pets() { Navigation = Navigation };
             InitializeComponent();
-
-            Content.BindingContext = ViewModel_Pets = new ViewModels.ViewModel_Pets() { Navigation = Navigation};
+            BindingContext = ViewModel_Pets;
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
             ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });

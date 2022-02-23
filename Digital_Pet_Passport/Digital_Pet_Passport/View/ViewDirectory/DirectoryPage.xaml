@@ -1,13 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Digital_Pet_Passport.View.ViewDirectory.DirectoryPage">
+             x:Class="Digital_Pet_Passport.View.ViewDirectory.DirectoryPage" 
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="tlbAdd"
+                     Text="Выбрать"
+                     Command="{Binding OpenInnerDirectory}"
+                     >
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout x:Name="RootCont">
-
-           
-            
-            <CollectionView x:Name="ViewStorage" SelectionMode="Single" SelectionChanged="ViewStorage_SelectionChanged">
+            <CollectionView x:Name="ViewStorage" SelectionMode="Single"
+                            ItemsSource="{Binding Externalstorage.DirAndFils}"
+                            SelectionChangedCommand="{Binding SelectImg}"
+                            SelectedItem="{Binding ItemExternal, Mode = TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>

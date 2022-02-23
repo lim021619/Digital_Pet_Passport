@@ -21,7 +21,7 @@ namespace Digital_Pet_Passport.Logic
 
         public string Path { get; set; }
 
-        public List<Model.ViewExternalStorageDirAndFil> DirAndFils { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Model.ViewExternalStorageDirAndFil> DirAndFils { get; set; }
 
         object lockScaning = new object();
 
@@ -51,7 +51,7 @@ namespace Digital_Pet_Passport.Logic
         {
             Directories = new List<DirectoryInfo>();
             Files = new List<FileInfo>();
-            DirAndFils = new List<Model.ViewExternalStorageDirAndFil>();
+            DirAndFils = new System.Collections.ObjectModel.ObservableCollection<Model.ViewExternalStorageDirAndFil>();
             Path = string.Empty;
           
         }

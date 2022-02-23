@@ -55,6 +55,7 @@ namespace Digital_Pet_Passport.ViewModels
                 commandOpenDeteilPet = value;
                 OnPropertyChange(nameof(CommandOpenDeteilPet));
             }
+            
         }
 
         public ICommand ClickStartOpen { get => clickStartOpen; set { clickStartOpen = value;  OnPropertyChange(nameof(ClickStartOpen)); }  }
@@ -71,6 +72,16 @@ namespace Digital_Pet_Passport.ViewModels
             SelectedPet = new Pet();
             InitPetsAsync();
             CreatPet();
+            Pets.CollectionChanged += Pets_CollectionChanged;
+        }
+
+        private void Pets_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (Pets.Count == 0 && !EnableDownloadFrame && EnableDownloadCollection)
+            {
+                EnableDownloadFrame = true;
+                EnableDownloadFrame = false;
+            }
         }
 
         /// <summary>

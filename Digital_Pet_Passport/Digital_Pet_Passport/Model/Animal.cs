@@ -19,7 +19,7 @@ namespace Digital_Pet_Passport.Model
         private int age;
         private string outAge;
         private double weightValue;
-        private bool sex;
+        private bool sex = false;
         private string castration;
         private string kind;
         private string breed;
@@ -84,76 +84,11 @@ namespace Digital_Pet_Passport.Model
             }
         }
         public Animal()
-        {
-            //if (age != 0) SetOutAgeAsync();
-            //else
-            //{
-            //    if (BirthDay != null) ReCalculateAge();
-            //    else
-            //    {
-            //        BirthDay = new BirthDay();
-            //    }
-            //}
-            
+        {   
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
             
-
         }
-
-
-
-
-        //async void SetOutAgeAsync()
-        //{
-
-        //    await System.Threading.Tasks.Task.Run(() =>
-        //    {
-        //        int days = age;
-        //        int count = 0;
-        //        int birth = BirthDay.Mounth;
-        //        int year = BirthDay.Year;
-        //        int yearout = 0;
-
-        //        while (true)
-        //        {
-        //            if (birth == 13)
-        //            {
-        //                birth = 1;
-        //            }
-        //            int daystomounththis = DateTime.DaysInMonth(year, birth);
-
-        //            days -= daystomounththis;
-        //            if (days >= 0)
-        //            {
-        //                if (count < 12)
-        //                {
-        //                    count++;
-
-        //                }
-        //                else
-        //                {
-        //                    count = 1;
-        //                    yearout++;
-        //                    year++;
-        //                }
-
-        //                birth++;
-        //            }
-        //            else
-        //            {
-        //                days += daystomounththis;
-        //                break;
-        //            }
-        //        }
-
-        //        OutAge = $"{yearout} г.{count} м.{Math.Abs(days)} дн.";
-
-        //    });
-
-
-        //}
-
 
         virtual protected void InitObjct()
         {
@@ -164,21 +99,8 @@ namespace Digital_Pet_Passport.Model
         {
             BirthDay = new BirthDay();
             BirthDay.Animal = this;
+            
         }
-
-        //public void ReCalculateAge()
-        //{
-        //    if (BirthDay != null)
-        //    {
-        //        TimeSpan timeSpan = TimeSpan.Zero;
-        //        DateTime birthday = BirthDay.GetBirthDay();
-        //        timeSpan = DateTime.Now.Date - birthday.Date;
-        //        age = ((int)timeSpan.TotalDays);
-        //        SetOutAgeAsync();
-        //    }
-
-
-        //}
 
         public void OnPropertyChanged(string prop = "")
         {

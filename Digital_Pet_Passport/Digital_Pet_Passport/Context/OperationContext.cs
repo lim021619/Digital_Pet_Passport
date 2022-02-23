@@ -20,13 +20,13 @@ namespace Digital_Pet_Passport.Context
         /// <summary>
         /// Конструктор инициализирует экземпляр класса, для работы с базой данных.
         /// </summary>
-        public OperationContext()
-        {
-            lock (App.LokingContext)
-            {
-                Context = App.Contextdb;
-            }         
-        }
+        //public OperationContext()
+        //{
+        //    lock (App.LokingContext)
+        //    {
+        //        Context = App.Contextdb;
+        //    }
+        //}
 
         public OperationContext(Context context)
         {
@@ -158,7 +158,10 @@ namespace Digital_Pet_Passport.Context
 
                     if (downloadInerProp)
                     {
-                        pet = Context?.Pets?.Include(p => p.BirthDay).Include(p => p.Images).FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
+                        pet = Context?.Pets?.Include(p => p.BirthDay).
+                            Include(p => p.Images).
+                            Include(p => p.AvatarObject).
+                            FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
                     }
                     else
                     {
@@ -188,10 +191,10 @@ namespace Digital_Pet_Passport.Context
         {
             List<Model.Pet> pets = new List<Model.Pet>();
 
-            lock(App.LokingContext)
+            lock (App.LokingContext)
             {
                 Context?.DetachAllEntities();
-                if (downloadInerProp) pets = Context?.Pets.Include(p => p.BirthDay)?.Include(p => p.Images).ToList();
+                if (downloadInerProp) pets = Context?.Pets.Include(p => p.BirthDay)?.Include(p => p.AvatarObject).Include(p => p.Images).ToList();
                 else
                 {
                     pets = Context?.Pets?.ToList();
@@ -222,10 +225,10 @@ namespace Digital_Pet_Passport.Context
             {
                 try
                 {
-
-                    App.Contextdb.Update(pet);
-                    App.Contextdb.SaveChanges();
-                    App.Contextdb.DetachAllEntities();
+                    
+                    Context.Pets.Update(pet);
+                    Context.SaveChanges();
+                    Context.DetachAllEntities();
 
                 }
                 catch (Exception e)
@@ -233,7 +236,7 @@ namespace Digital_Pet_Passport.Context
 
                     var f = e.InnerException;
                 }
-                
+
             }
         }
 

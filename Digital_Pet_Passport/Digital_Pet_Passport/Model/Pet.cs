@@ -8,7 +8,7 @@ namespace Digital_Pet_Passport.Model
     /// <summary>
     /// Питомец
     /// </summary>
-    public class Pet : Animal
+    public class Pet : Animal, IDisposable
     {
         private event ChangeProperty _changeAvatar;
 
@@ -57,6 +57,7 @@ namespace Digital_Pet_Passport.Model
             base.InitObjct();
             Images = new List<Image>();
             Avatar = OtherModels.PathImgPets.PathAvatar;
+            PathSex = OtherModels.PathImgPets.PathSexMan;
             //AvatarObject = new ImagePet();
             //AvatarObject.Pet = this;
             //AvatarObject.PetId = Id;
@@ -91,6 +92,11 @@ namespace Digital_Pet_Passport.Model
                 }
                 
             }
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

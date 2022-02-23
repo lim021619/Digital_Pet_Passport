@@ -20,9 +20,9 @@ namespace Digital_Pet_Passport.ViewModels
             
         }
 
-        private async void OpenSetting()
+        private void OpenSetting()
         {
-            logicWindows.OpenSettingPet(Navigation, Pet);
+           logicWindows.OpenSettingPet(Navigation, Pet);
         }
     }
 }

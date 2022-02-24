@@ -39,11 +39,6 @@ namespace Digital_Pet_Passport.View.ViewDirectory
 
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            
-
-        }
+       
     }
 }

@@ -15,14 +15,23 @@
             <CollectionView x:Name="ViewStorage" SelectionMode="Single"
                             ItemsSource="{Binding Externalstorage.DirAndFils}"
                             SelectionChangedCommand="{Binding SelectImg}"
-                            SelectedItem="{Binding ItemExternal, Mode = TwoWay}">
+                            SelectedItem="{Binding ItemExternal, Mode = TwoWay}" 
+                            >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>
                             <StackLayout Orientation="Horizontal" Padding="0">
-                                <Image WidthRequest="50" HeightRequest="50" 
-                           Source="DefoultPetImage.png"
-                           HorizontalOptions="StartAndExpand"></Image>
+                                <Frame HorizontalOptions="StartAndExpand"
+                                    WidthRequest="50" HeightRequest="50" 
+                                  HasShadow="False" >
+                                    <Image Aspect="AspectFill"
+                           Source="{Binding PathImg}"
+                           ></Image>
+
+                                </Frame>
+                               
+
+
                                 <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"
                            TextColor="#FF755B"
                            VerticalOptions="CenterAndExpand"

@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Digital_Pet_Passport.MainPage"    
              >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Общая информация" Order="Secondary"></ToolbarItem>
+        <ToolbarItem Text="Связь с разработчиком" Order="Secondary"></ToolbarItem>
+        <ToolbarItem Text="О приложении" Order="Secondary"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" >
             

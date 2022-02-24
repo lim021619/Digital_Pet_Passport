@@ -22,13 +22,7 @@ namespace Digital_Pet_Passport
             ViewModel_Pets = new ViewModels.ViewModel_Pets() { Navigation = Navigation };
             InitializeComponent();
             BindingContext = ViewModel_Pets;
-            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Общая информация" });
-            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "Связь с разработчиком" });
-            ToolbarItems.Add(new ToolbarItem() { Order = ToolbarItemOrder.Secondary, Text = "О приложении" });
             
-            
-
-
         }
 
 
@@ -42,8 +36,6 @@ namespace Digital_Pet_Passport
         }
 
         
-    
-      
         /// <summary>
         /// Открытие окна для добавления нового питомца
         /// </summary>

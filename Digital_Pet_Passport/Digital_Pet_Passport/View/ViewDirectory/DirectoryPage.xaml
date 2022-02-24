@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Digital_Pet_Passport.View.ViewDirectory.DirectoryPage" 
+             xmlns:ff = "clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             xmlns:ffSvg = "clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"  
+             xmlns:ffTransformations = "clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="tlbAdd"
@@ -24,12 +27,13 @@
                                 <Frame HorizontalOptions="StartAndExpand"
                                     WidthRequest="50" HeightRequest="50" 
                                   HasShadow="False" >
-                                    <Image Aspect="AspectFill"
-                           Source="{Binding PathImg}"
-                           ></Image>
+                                    <ff:CachedImage Aspect="AspectFill" Source="{Binding PathImg}"/>
+                                    <!--<Image Aspect="AspectFill"
+                           Source="{Binding PathImg}"-->
+                                    
 
                                 </Frame>
-                               
+
 
 
                                 <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"

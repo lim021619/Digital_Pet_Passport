@@ -22,14 +22,11 @@ namespace Digital_Pet_Passport
         public static int CountPets { get; set; }
         public App()
         {
-        
             InitializeComponent();
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
-            var ts = 0;
-            //InitContext();
             MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.LightGray };
-            //MainPage = new NavigationPage(new Tests.TestNotifyProppetryChanged.TestViewNPCH()) { BarBackgroundColor = Color.LightGray };
+            
         }
 
         protected override void OnStart()
@@ -44,16 +41,7 @@ namespace Digital_Pet_Passport
         {
         }
 
-        void Init() 
-        {
-            InitContextAsync();
-        }
-
-        async void InitContextAsync()
-        {
-            await Task.Run(() => InitContext());
-        }
-
+       
         void InitContext()
         {
             lock (LokingContext) {

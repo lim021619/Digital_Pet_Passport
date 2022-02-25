@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace Digital_Pet_Passport.Model
@@ -24,6 +25,8 @@ namespace Digital_Pet_Passport.Model
         private string kind;
         private string breed;
         private int weight;
+        private Weight weightNow;
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,6 +74,11 @@ namespace Digital_Pet_Passport.Model
 
         public int LastWeightId { get => weight; set { weight = value; OnPropertyChanged(nameof(LastWeightId)); } }
 
+        
+
+        [NotMapped]
+        public Weight WeightNow { get => weightNow; set { weightNow = value; OnPropertyChanged(nameof(WeightNow)); } }
+
         [NotMapped]
         public string OutAge
         {
@@ -84,10 +92,14 @@ namespace Digital_Pet_Passport.Model
             }
         }
         public Animal()
-        {   
+        {
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
+            WeightNow = new Weight();
+            WeightNow = HistoryWeight?.FirstOrDefault(w => w.IsActive);
             
+            
+
         }
 
         virtual protected void InitObjct()
@@ -99,7 +111,7 @@ namespace Digital_Pet_Passport.Model
         {
             BirthDay = new BirthDay();
             BirthDay.Animal = this;
-            
+
         }
 
         public void OnPropertyChanged(string prop = "")

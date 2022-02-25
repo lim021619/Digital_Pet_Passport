@@ -13,6 +13,7 @@ namespace Digital_Pet_Passport.Model
     {
         private int kg;
         private int gramm;
+        private BirthDay dateWeight;
 
         public int Id { get; set; }
 
@@ -20,9 +21,18 @@ namespace Digital_Pet_Passport.Model
 
         public int Gramm { get => gramm; set { gramm = value; OnPropertyChange(nameof(Gramm)); } }
 
+        public bool IsActive { get; set; }
+
         public Animal Animal { get; set; }
 
         public int AnimalId { get; set; }
+
+        public BirthDay DateWeight { get => dateWeight; set => dateWeight = value; }
+
+        public Weight()
+        {
+            DateWeight = new BirthDay();
+        }
 
         public void InitObjct(string weightRow)
         {

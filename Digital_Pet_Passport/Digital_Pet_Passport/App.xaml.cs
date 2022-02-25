@@ -26,7 +26,7 @@ namespace Digital_Pet_Passport
             InitializeComponent();
             Thread h = new Thread(new ThreadStart(InitContext));
             h.Start();
-
+            var ts = 0;
             //InitContext();
             MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor = Color.LightGray };
             //MainPage = new NavigationPage(new Tests.TestNotifyProppetryChanged.TestViewNPCH()) { BarBackgroundColor = Color.LightGray };

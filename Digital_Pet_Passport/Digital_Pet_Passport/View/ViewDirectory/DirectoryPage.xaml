@@ -25,16 +25,11 @@
                         <Frame>
                             <StackLayout Orientation="Horizontal" Padding="0">
                                 <Frame HorizontalOptions="StartAndExpand"
-                                    WidthRequest="50" HeightRequest="50" 
+                                    WidthRequest="60" HeightRequest="60" 
                                   HasShadow="False" >
-                                    <ff:CachedImage Aspect="AspectFill" Source="{Binding PathImg}"/>
-                                    <!--<Image Aspect="AspectFill"
-                           Source="{Binding PathImg}"-->
-                                    
+                                    <ff:CachedImage Aspect="AspectFill" Source="{Binding PathImg}" DownsampleToViewSize="True"/>
 
                                 </Frame>
-
-
 
                                 <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"
                            TextColor="#FF755B"

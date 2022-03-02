@@ -14,7 +14,7 @@ namespace Digital_Pet_Passport.Context
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<BirthDay> Birthdays { get; set; }
-
+        public DbSet<Weight> Weights { get; set; }
         public DbSet<Image> Images { get; set; }
 
         public bool ResetDb { get; set; }   
@@ -42,7 +42,7 @@ namespace Digital_Pet_Passport.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "PetsDb1.db3");
+            string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "PetsDb2.db3");
 
             optionsBuilder
                 .UseSqlite($"Filename={dbPath}");

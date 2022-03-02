@@ -30,28 +30,32 @@
                     <StackLayout Spacing="20">
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Порода</Label>
-                            <Label FontSize="20" Text="{Binding Pet.Breed}"></Label>
+                            <Label FontSize="18" Text="{Binding Pet.Breed}"></Label>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Вид</Label>
-                            <Label FontSize="20" Text="{Binding Pet.Kind}"></Label>
+                            <Label FontSize="18" Text="{Binding Pet.Kind}"></Label>
                         </StackLayout>
 
 
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Возраст</Label>
-                            <Label FontSize="20" Text="{Binding Pet.BirthDay.NowFullAge}"></Label>
+                            <Label FontSize="18" Text="{Binding Pet.BirthDay.NowFullAge}"></Label>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal">
                             <Label FontSize="20" FontAttributes="Bold">Дата рождения</Label>
-                            <Label FontSize="20" Text="{Binding Pet.BirthDay.BirthDayDate}"></Label>
+                            <Label FontSize="18" Text="{Binding Pet.BirthDay.BirthDayDate}"></Label>
                         </StackLayout>
 
                         <StackLayout Orientation="Horizontal">
-                            <Label FontSize="20" FontAttributes="Bold">Вес</Label>
-                            <Label FontSize="20" Text="{Binding Pet.WeightValue}"></Label>
+                            <Label FontSize="20"  FontAttributes="Bold">Вес</Label>
+                            <Label FontSize="18" VerticalTextAlignment="Center" Text="{Binding Pet.WeightNow.Kg}"></Label>
+                            <Label FontSize="18" VerticalTextAlignment="Center" Text="кг"></Label>
+                            
+                            <Label FontSize="18" VerticalTextAlignment="Center" Text="{Binding Pet.WeightNow.Gramm}"></Label>
+                            <Label FontSize="18" VerticalTextAlignment="Center" Text="гр"></Label>
                         </StackLayout>
 
                     </StackLayout>

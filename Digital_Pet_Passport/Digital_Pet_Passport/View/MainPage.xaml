@@ -55,7 +55,7 @@
                       HorizontalOptions="FillAndExpand">
 
 
-            <CollectionView x:Name="Pets"  Margin="0" SelectionMode="Single"
+            <CollectionView x:Name="Pets"  Margin="-20" SelectionMode="Single"
                             ItemsSource="{Binding Pets}"
                             SelectedItem="{Binding SelectedPet}"
                             SelectionChangedCommand="{Binding CommandOpenDeteilPet}"

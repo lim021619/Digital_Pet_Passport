@@ -16,6 +16,7 @@ namespace Digital_Pet_Passport.ViewModels
         public ViewDetaile(Pet pet)
         {
             Pet = pet;
+            Pet.SetWeightNow();
             OpenWindowSetting = new Command(OpenSetting);
             
         }

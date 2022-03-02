@@ -13,41 +13,16 @@ namespace Digital_Pet_Passport.View.ViewCreatePet
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetaileCreatePage : ContentPage
     {
-        private Pet pet;
-
-        public Pet Pet { get => pet; set { pet = value; OnPropertyChanging(nameof(Pet)); } }
+        public ViewModels.ViewDetaileCreate ViewDetaileCreate { get; set; }
 
         public DetaileCreatePage(Pet pet)
         {
-            Pet = pet;
+            ViewDetaileCreate = new ViewModels.ViewDetaileCreate(pet) { Navigation = Navigation};
             InitializeComponent();
-            Content.BindingContext = Pet;
-
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            ToolbarItems.Add(new ToolbarItem() { Text = "Добавление" });
-            if (Pet.AvatarObject == null)
-            {
-                Pet.AvatarObject = new ImagePet();
-                Pet.AvatarObject.PathImage = Pet.Avatar;
-            }
-            await Task.Run(() =>
-            {
-                new Context.OperationContext(App.Contextdb).AddPet(Pet);
-            });
-
+            BindingContext = ViewDetaileCreate;
             
-            MainPage.ViewModel_Pets.Pets.Add(Pet);
-            if (!MainPage.ViewModel_Pets.EnableDownloadCollection)
-            {
-                MainPage.ViewModel_Pets.EnableDownloadFrame = false;
-                MainPage.ViewModel_Pets.EnableDownloadCollection = true;
-            }
-
-            ToolbarItems.Clear();
-            await Navigation.PopToRootAsync();
         }
+
+        
     }
 }

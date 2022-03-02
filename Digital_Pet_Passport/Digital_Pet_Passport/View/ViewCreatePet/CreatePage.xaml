@@ -9,7 +9,7 @@
 
             <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" Padding="10">
                 <Frame>
-                    <StackLayout Padding="0" >
+                    <StackLayout Padding="0" Spacing="30">
 
                         <StackLayout HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal">
@@ -54,38 +54,52 @@
                                        Text="{Binding Pet.Breed}"></Entry>
                             </StackLayout>
                         </StackLayout>
-                      
-                    </StackLayout>
-                </Frame>
-                <Frame>
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="Вес"
+
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="Вес"
                            HorizontalOptions="Start" 
                            VerticalOptions="CenterAndExpand"
                            FontSize="18" FontAttributes="Bold"></Label>
-                                <Entry 
-                            HorizontalOptions="EndAndExpand"
-                            VerticalOptions="EndAndExpand"
-                                    Keyboard="Numeric"
-                                    ClearButtonVisibility="WhileEditing"
-                                    WidthRequest="85"
-                                    HorizontalTextAlignment="Center" x:Name="Weight"
-                            FontSize="16" TextColor="Gray" 
-                                    Text="{Binding Pet.WeightValue}"></Entry>
+
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Entry FontSize="16" Text= "{Binding Pet.WeightNow.Kg}" Keyboard="Numeric" MaxLength="3" HorizontalOptions="CenterAndExpand" WidthRequest="100" HorizontalTextAlignment="Center"></Entry>
+                                        <Label VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="16" Text="кг" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" ></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                        <Entry FontSize="16" Text="{Binding Pet.WeightNow.Gramm}" Keyboard="Numeric" MaxLength="3" HorizontalOptions="CenterAndExpand" WidthRequest="100" HorizontalTextAlignment="Center"></Entry>
+                                        <Label VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="16" Text="гр" HorizontalOptions="StartAndExpand"></Label>
+                                    </StackLayout>
+
+                                </StackLayout>
 
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                <Label FontAttributes="Bold" FontSize="18"
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Label FontAttributes="Bold" FontSize="18"
                                    VerticalOptions="CenterAndExpand">Дата рождения</Label>
-                                <DatePicker TextColor="Gray" HorizontalOptions="EndAndExpand" x:Name="BirthDay"
+                            <DatePicker TextColor="Gray" HorizontalOptions="CenterAndExpand"  WidthRequest="150" x:Name="BirthDay"
                                             Date="{Binding Pet.BirthDay.BirthDatebinding}" ></DatePicker>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="18" FontAttributes="Bold" Text="{Binding Pet.WordCastration}"></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <Label FontAttributes="Bold" FontSize="16" Text="Да"></Label>
+                                <RadioButton IsChecked="{Binding Pet.Castration}"></RadioButton>
+                                <RadioButton ></RadioButton>
+                                <Label FontAttributes="Bold" FontSize="16" Text="Нет"></Label>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>
+                    
+                    
+                    
                 </Frame>
-
+               
                 <StackLayout>
                     <Frame>
                         <StackLayout Orientation="Horizontal">

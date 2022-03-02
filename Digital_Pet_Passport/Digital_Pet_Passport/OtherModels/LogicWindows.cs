@@ -47,6 +47,11 @@ namespace Digital_Pet_Passport.OtherModels
         {
             await navigation.PushAsync(new View.SettingPet.ViewSettingPetPage(pet));
         }
+
+        public async void OpenRootWindow(INavigation navigation)
+        {
+            await navigation.PopToRootAsync();
+        }
        
     }
 }

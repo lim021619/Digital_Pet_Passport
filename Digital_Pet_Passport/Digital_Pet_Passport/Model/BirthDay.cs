@@ -270,6 +270,14 @@ namespace Digital_Pet_Passport.Model
 
         }
         /// <summary>
+        /// Метод асинхронно инициализирует фиксированнаую дату
+        /// </summary>
+        /// <param name="dateTime"></param>
+        public async void SetAgeAsync(DateTime dateTime)
+        {
+            await Task.Run(() => SetAge(dateTime));
+        }
+        /// <summary>
         /// Инициализиурет свойство BirthDayDate и возвращает его
         /// </summary>
         /// <returns></returns>

@@ -16,19 +16,29 @@ namespace Digital_Pet_Passport.Model
         public delegate void ChangeProperty();
 
         public event ChangeProperty EventChangeSex;
+        public event ChangeProperty EmptyHistoryWeights;
+
+        public const string Man = "Кастрация";
+        public const string Wooman = "Стерелизация";
+        public const string WordWoomanSter = "Стерелизована";
+        public const string WordCast = "Кастрирован";
+
+
 
         private int age;
         private string outAge;
         private double weightValue;
-        private bool sex = false;
-        private string castration;
+        private bool sex = false,
+                     castration = false;
         private string kind;
         private string breed;
         private int weight;
         private Weight weightNow;
-        
+        private string wordCastration = Man;
+        private string resulteCastString = WordCast;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        
 
         public int Id { get; set; }
 
@@ -66,15 +76,23 @@ namespace Digital_Pet_Passport.Model
         /// </summary>
         public BirthDay BirthDay { get; set; }
 
-        public string Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); } }
+        public bool Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); } }
+
+
 
         public List<Manipulaton> Manipulatons { get; set; }
 
+        
         public System.Collections.ObjectModel.ObservableCollection<Weight> HistoryWeight { get; set; }
+        [NotMapped]
+        public List<Weight> WeightsHistory { get; set; }
 
         public int LastWeightId { get => weight; set { weight = value; OnPropertyChanged(nameof(LastWeightId)); } }
 
-        
+        /// <summary>
+        /// Строка которая представляет информацию о том кастрирован(стерелизван) ли питомцец
+        /// </summary>
+        public string ResulteCastString { get => resulteCastString; set { resulteCastString = value; OnPropertyChanged(nameof(ResulteCastString)); } }
 
         [NotMapped]
         public Weight WeightNow { get => weightNow; set { weightNow = value; OnPropertyChanged(nameof(WeightNow)); } }
@@ -91,14 +109,17 @@ namespace Digital_Pet_Passport.Model
 
             }
         }
+        [NotMapped]
+        public string WordCastration { get => wordCastration; set { wordCastration = value; OnPropertyChanged(nameof(WordCastration)); } }
         public Animal()
         {
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
             WeightNow = new Weight();
-            WeightNow = HistoryWeight?.FirstOrDefault(w => w.IsActive);
-            
-            
+            Weight searchActivWeight = HistoryWeight?.FirstOrDefault(w => w.IsActive);
+            if (searchActivWeight != null) WeightNow = searchActivWeight;
+
+
 
         }
 
@@ -110,8 +131,77 @@ namespace Digital_Pet_Passport.Model
         virtual protected void InitProp()
         {
             BirthDay = new BirthDay();
+            WeightsHistory = new List<Weight>();
             BirthDay.Animal = this;
+            HistoryWeight.CollectionChanged += HistoryWeight_CollectionChanged;
 
+        }
+
+        private void HistoryWeight_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            WeightsHistory.Add(e.NewItems[0] as Weight);
+        }
+
+        /// <summary>
+        /// Добавляет новую отмету о весе животного
+        /// </summary>
+        public void AddWeightNow()
+        {
+            WeightNow.IsActive = true;
+            HistoryWeight?.Add(WeightNow);
+        }
+
+        public void AddWeightNow(Weight weightNew)
+        {
+            weightNew.IsActive = true;
+            WeightNow = weightNew;
+            HistoryWeight?.Add(WeightNow);
+        }
+
+        public void ChangeWeightActive(Weight weightNew)
+        {
+            Weight weight = GetActiveWeight();
+            if (weight != null)
+            {
+                GetActiveWeight(WeightNow.Id).IsActive = false;
+                AddWeightNow(weightNew);
+            }
+            else
+            {
+                AddWeightNow();
+            }
+        }
+
+        public Weight GetActiveWeight(bool chekAndNotify)
+        {
+            if (HistoryWeight?.Count != 0)
+            {
+                return HistoryWeight.FirstOrDefault(w => w.IsActive);
+            }
+            else
+            {
+                EmptyHistoryWeights?.Invoke();
+                return weightNow;
+            }
+        }
+
+        public Weight GetActiveWeight()
+        {
+            return HistoryWeight?.FirstOrDefault(w => w.IsActive);
+        }
+
+        public void SetWeightNow(Weight weight)
+        {
+            WeightNow = weight;
+        }
+
+        public void SetWeightNow()
+        {
+            WeightNow = GetActiveWeight(true);
+        }
+        public Weight GetActiveWeight(int byId)
+        {
+            return HistoryWeight?.FirstOrDefault(w => w.Id == byId);
         }
 
         public void OnPropertyChanged(string prop = "")

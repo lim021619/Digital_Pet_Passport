@@ -43,11 +43,22 @@ namespace Digital_Pet_Passport.Context
             {
                 lock (App.LokingContext)
                 {
-                    Context?.DetachAllEntities();
-                    Context?.Birthdays.Add(pet.BirthDay);
-                    Context?.Pets.Add(pet);
-                    Context?.SaveChanges();
-                    Context?.DetachAllEntities();
+                    try
+                    {
+                        pet.BirthDay.Id  = pet.WeightNow.Id = 0;
+                        Context?.DetachAllEntities();
+                        Context?.Birthdays.Add(pet.BirthDay);
+                        Context?.Weights.Add(pet.WeightNow);
+                        Context?.Pets.Add(pet);
+                        Context?.SaveChanges();
+                        Context?.DetachAllEntities();
+                    }
+                    catch (Exception e)
+                    {
+                        var t = e.Message;
+                        var s = e.InnerException;
+                    }
+               
                 }
             }
         }
@@ -194,7 +205,11 @@ namespace Digital_Pet_Passport.Context
             lock (App.LokingContext)
             {
                 Context?.DetachAllEntities();
-                if (downloadInerProp) pets = Context?.Pets.Include(p => p.BirthDay)?.Include(p => p.AvatarObject).Include(p => p.Images).ToList();
+                if (downloadInerProp) pets = Context?.Pets.Include(p => p.BirthDay)
+                        ?.Include(p => p.AvatarObject)
+                        ?.Include(p => p.Images)
+                        ?.Include(p => p.HistoryWeight)
+                        ?.ToList();
                 else
                 {
                     pets = Context?.Pets?.ToList();

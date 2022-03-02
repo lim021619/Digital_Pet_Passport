@@ -4,19 +4,24 @@ using System.Text;
 
 namespace Digital_Pet_Passport.Model
 {
-    public class Manipulaton
+    public class Manipulaton : NotifyPropertyChange
     {
+        private string name;
+        private int year;
+        private int mounth;
+        private int day;
+
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get => name; set { name = value; OnPropertyChange(nameof(Name)); } }
 
-        public int Year { get; set; }
+        public int Year { get => year; set { year = value; OnPropertyChange(nameof(Year)); } }
 
-        public int Mounth { get; set; }
+        public int Mounth { get => mounth; set { mounth = value; OnPropertyChange(nameof(Mounth)); } }
 
-        public int Day { get; set; }
+        public int Day { get => day; set { day = value; OnPropertyChange(nameof(Day)); } }
 
-        public EManipulation TypeManipulaton { get; set;}
+        public EManipulation TypeManipulaton { get; set; }
 
         public Animal Animal { get; set; }
 
@@ -27,13 +32,24 @@ namespace Digital_Pet_Passport.Model
 
         public Manipulaton()
         {
+            InitDate();
+        }
+
+        public Manipulaton(EManipulation manipulation)
+        {
+            InitObjct(manipulation);
+            InitDate();
+        }
+
+        private void InitDate()
+        {
             if (chekIntZero(Year) && chekIntZero(Mounth) && chekIntZero(Day))
             {
                 Date = new DateTime(Year, Mounth, Day);
             }
         }
 
-        public Manipulaton(EManipulation manipulation)
+       protected virtual void InitObjct(EManipulation manipulation)
         {
             TypeManipulaton = manipulation;
             Year = DateTime.Now.Year;

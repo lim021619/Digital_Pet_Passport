@@ -87,14 +87,15 @@ namespace Digital_Pet_Passport.ViewModels
 
         private async void CreatePet_EventChangeSex()
         {
-            await System.Threading.Tasks.Task.Run(ChangeSexImage);
+            await System.Threading.Tasks.Task.Run(ChangeSex);
+            
         }
 
-        private void ChangeSexImage()
+        private void ChangeSex()
         {
-            if (Pet.Sex) Pet.PathSex = OtherModels.PathImgPets.PathSexWooman;
-            else Pet.PathSex = OtherModels.PathImgPets.PathSexMan;
-
+            if (Pet.Sex) { Pet.PathSex = OtherModels.PathImgPets.PathSexWooman; Pet.WordCastration = Animal.Wooman; Pet.ResulteCastString = Animal.WordWoomanSter; }
+            else { Pet.PathSex = OtherModels.PathImgPets.PathSexMan; Pet.WordCastration = Animal.Man; Pet.ResulteCastString = Animal.WordCast; }
+            
         }
 
         public void Dispose()

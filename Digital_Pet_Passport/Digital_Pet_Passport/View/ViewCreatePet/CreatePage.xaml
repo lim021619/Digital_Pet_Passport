@@ -16,8 +16,8 @@
                             
                             <Image Source="FemaleIcone.png" WidthRequest="25" HeightRequest="25"></Image>
 
-                            <RadioButton x:Name="sexbut" IsChecked="{Binding Pet.Sex}" ></RadioButton>
-                            <RadioButton></RadioButton>
+                            <RadioButton IsChecked="{Binding Pet.Sex}" ></RadioButton>
+                            <RadioButton ></RadioButton>
 
                             <Image Source="MaleImage.png" WidthRequest="25" HeightRequest="25"></Image>
                         </StackLayout>

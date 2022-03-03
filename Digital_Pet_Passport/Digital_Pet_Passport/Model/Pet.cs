@@ -56,7 +56,7 @@ namespace Digital_Pet_Passport.Model
         {
             base.InitObjct();
             Images = new List<Image>();
-            Avatar = OtherModels.PathImgPets.PathAvatar;
+            Avatar = OtherModels.PathImgPets.PathStdIcon;
             PathSex = OtherModels.PathImgPets.PathSexMan;
             //AvatarObject = new ImagePet();
             //AvatarObject.Pet = this;

@@ -18,6 +18,9 @@ namespace Digital_Pet_Passport.ViewModels
             Pet.BirthDay.OnFillBirthDate += BirthDay_OnFillBirthDate;
             EmptyNameEvent += ViewCreatePet_EmptyNameEvent;
 
+            Pet.Sex = false;
+            Pet.Castration = false;
+
             OtherModels.ImgDirectory.DropEvent();
 
             OtherModels.ImgDirectory.changePath += ImgDirectory_changePath;

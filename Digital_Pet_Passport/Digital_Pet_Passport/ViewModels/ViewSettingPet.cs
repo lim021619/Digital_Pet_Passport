@@ -25,6 +25,7 @@ namespace Digital_Pet_Passport.ViewModels
         public ViewSettingPet(Model.Pet pet)
         {
             Pet = pet;
+            Pet.SetWeightNow();
             InitPropAsync();
         }
 
@@ -111,7 +112,7 @@ namespace Digital_Pet_Passport.ViewModels
         async void Delete()
         {
             new Context.OperationContext(App.Contextdb).RemovePet(Pet);
-            if (Pet.Avatar != OtherModels.PathImgPets.PathAvatar)
+            if (Pet.Avatar != OtherModels.PathImgPets.PathStdIcon)
             {
                 new Model.Image().RemoveImage(Pet.Avatar);
             }

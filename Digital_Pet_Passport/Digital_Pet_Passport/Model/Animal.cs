@@ -28,8 +28,9 @@ namespace Digital_Pet_Passport.Model
         private int age;
         private string outAge;
         private double weightValue;
-        private bool sex = false,
-                     castration = false;
+        private bool sex;
+        private bool castration;
+
         private string kind;
         private string breed;
         private int weight;
@@ -77,16 +78,11 @@ namespace Digital_Pet_Passport.Model
         public BirthDay BirthDay { get; set; }
 
         public bool Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); } }
-
-
-
-        public List<Manipulaton> Manipulatons { get; set; }
-
         
-        public System.Collections.ObjectModel.ObservableCollection<Weight> HistoryWeight { get; set; }
-        [NotMapped]
-        public List<Weight> WeightsHistory { get; set; }
+        public System.Collections.ObjectModel.ObservableCollection<Manipulaton> Manipulatons { get; set; }
 
+        public System.Collections.ObjectModel.ObservableCollection<Weight> HistoryWeight { get; set; }
+        
         public int LastWeightId { get => weight; set { weight = value; OnPropertyChanged(nameof(LastWeightId)); } }
 
         /// <summary>
@@ -115,6 +111,7 @@ namespace Digital_Pet_Passport.Model
         {
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
+            Manipulatons = new System.Collections.ObjectModel.ObservableCollection<Manipulaton>();
             WeightNow = new Weight();
             Weight searchActivWeight = HistoryWeight?.FirstOrDefault(w => w.IsActive);
             if (searchActivWeight != null) WeightNow = searchActivWeight;
@@ -131,16 +128,11 @@ namespace Digital_Pet_Passport.Model
         virtual protected void InitProp()
         {
             BirthDay = new BirthDay();
-            WeightsHistory = new List<Weight>();
             BirthDay.Animal = this;
-            HistoryWeight.CollectionChanged += HistoryWeight_CollectionChanged;
-
+        
         }
 
-        private void HistoryWeight_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            WeightsHistory.Add(e.NewItems[0] as Weight);
-        }
+        
 
         /// <summary>
         /// Добавляет новую отмету о весе животного

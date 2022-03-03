@@ -16,6 +16,8 @@ namespace Digital_Pet_Passport.Context
         public DbSet<BirthDay> Birthdays { get; set; }
         public DbSet<Weight> Weights { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Marker> Markers { get; set; }
+        public DbSet<Manipulaton> Manipulatons { get; set; }
 
         public bool ResetDb { get; set; }   
 

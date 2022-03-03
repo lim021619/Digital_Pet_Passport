@@ -51,7 +51,7 @@ namespace Digital_Pet_Passport.Model
             }
             else
             {
-                PathImg = OtherModels.PathImgPets.PathAvatar;
+                PathImg = OtherModels.PathImgPets.PathStdIcon;
             }
         }
 

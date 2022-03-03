@@ -45,7 +45,6 @@ namespace Digital_Pet_Passport.Context
                 {
                     try
                     {
-                        pet.BirthDay.Id  = pet.WeightNow.Id = 0;
                         Context?.DetachAllEntities();
                         Context?.Birthdays.Add(pet.BirthDay);
                         Context?.Weights.Add(pet.WeightNow);
@@ -130,7 +129,11 @@ namespace Digital_Pet_Passport.Context
                     Context?.DetachAllEntities();
                     if (downloadInerProp)
                     {
-                        pet = Context?.Pets?.Include(p => p.BirthDay).Include(p => p.Images).FirstOrDefault(i => i.Id == id);
+                        pet = Context?.Pets?.Include(p => p.BirthDay)
+                        ?.Include(p => p.AvatarObject)
+                        ?.Include(p => p.Images)
+                        ?.Include(p => p.HistoryWeight)
+                        ?.FirstOrDefault(i => i.Id == id);
                     }
                     else
                     {
@@ -169,10 +172,11 @@ namespace Digital_Pet_Passport.Context
 
                     if (downloadInerProp)
                     {
-                        pet = Context?.Pets?.Include(p => p.BirthDay).
-                            Include(p => p.Images).
-                            Include(p => p.AvatarObject).
-                            FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
+                        pet = Context?.Pets?.Include(p => p.BirthDay)
+                        ?.Include(p => p.AvatarObject)
+                        ?.Include(p => p.Images)
+                        ?.Include(p => p.HistoryWeight)
+                        ?.FirstOrDefault(i => i.Name.ToUpper().Trim() == name.ToUpper().Trim());
                     }
                     else
                     {

@@ -16,6 +16,11 @@ namespace Digital_Pet_Passport.Model
         private string avatar;
         private string pathSex;
         private ImagePet avatarObject;
+        private bool danger_Rabies = false;
+        private bool syringe_Rabies = false;
+        private bool danger_Tick = false;
+        private bool syringe_Tick = false;
+        private bool syringe = false;
 
         /// <summary>
         /// Кличка
@@ -25,7 +30,7 @@ namespace Digital_Pet_Passport.Model
         /// <summary>
         /// Путь до аватра питомца
         /// </summary>
-        public string Avatar { get => avatar; set { avatar = value; OnPropertyChanged(nameof(Avatar));  } }
+        public string Avatar { get => avatar; set { avatar = value; OnPropertyChanged(nameof(Avatar)); } }
 
         /// <summary>
         /// Объект предстваляющий аватар питомца
@@ -37,6 +42,13 @@ namespace Digital_Pet_Passport.Model
         public string PathSex { get => pathSex; set { pathSex = value; OnPropertyChanged(nameof(PathSex)); } }
 
 
+        public bool Syringe_Tick { get => syringe_Tick; set { syringe_Tick = value; OnPropertyChanged(nameof(Syringe_Tick)); } }
+        public bool Danger_Tick { get => danger_Tick; set { danger_Tick = value; OnPropertyChanged(nameof(Danger_Tick)); } }
+        public bool Syringe_Rabies { get => syringe_Rabies; set { syringe_Rabies = value; danger_Tick = value; OnPropertyChanged(nameof(Syringe_Rabies)); } }
+        public bool Danger_Rabies { get => danger_Rabies; set { danger_Rabies = value; OnPropertyChanged(nameof(Danger_Rabies)); } }
+        public bool Syringe { get => syringe; set { syringe = value; OnPropertyChanged(nameof(Syringe)); } }
+
+
         public Pet()
         {
             InitObjct();
@@ -45,7 +57,7 @@ namespace Digital_Pet_Passport.Model
 
         public Pet(string name)
         {
-            
+
             InitObjct();
             Name = name;
             InitEvent();
@@ -61,7 +73,7 @@ namespace Digital_Pet_Passport.Model
             //AvatarObject = new ImagePet();
             //AvatarObject.Pet = this;
             //AvatarObject.PetId = Id;
-            
+
         }
 
         /// <summary>
@@ -71,7 +83,7 @@ namespace Digital_Pet_Passport.Model
         public void SetAvatar(ImagePet image)
         {
             AvatarObject = image;
-            Avatar= image.PathImage;
+            Avatar = image.PathImage;
         }
 
         protected virtual void InitEvent()
@@ -81,7 +93,7 @@ namespace Digital_Pet_Passport.Model
 
         private void Pet__changeAvatar()
         {
-            if (Avatar!=String.Empty || Avatar != null)
+            if (Avatar != String.Empty || Avatar != null)
             {
 
                 if (AvatarObject.PathImage != Avatar)
@@ -90,13 +102,13 @@ namespace Digital_Pet_Passport.Model
                     AvatarObject.Name = $"{Name}_|_{Avatar}";
                     AvatarObject.Avatar = true;
                 }
-                
+
             }
         }
 
         public void Dispose()
         {
-            
+
         }
     }
 }

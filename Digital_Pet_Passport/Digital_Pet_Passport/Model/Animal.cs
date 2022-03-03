@@ -17,6 +17,9 @@ namespace Digital_Pet_Passport.Model
 
         public event ChangeProperty EventChangeSex;
         public event ChangeProperty EmptyHistoryWeights;
+        public event ChangeProperty ChangeCastration;
+        public event ChangeProperty AddingNewMark;
+
 
         public const string Man = "Кастрация";
         public const string Wooman = "Стерелизация";
@@ -77,22 +80,27 @@ namespace Digital_Pet_Passport.Model
         /// </summary>
         public BirthDay BirthDay { get; set; }
 
-        public bool Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); } }
+        public bool Castration { get => castration; set { castration = value; OnPropertyChanged(nameof(Castration)); if(castration) ChangeCastration?.Invoke(); } }
         
         public System.Collections.ObjectModel.ObservableCollection<Manipulaton> Manipulatons { get; set; }
 
         public System.Collections.ObjectModel.ObservableCollection<Weight> HistoryWeight { get; set; }
+
+        public System.Collections.ObjectModel.ObservableCollection<Marker> Markers { get; set; }
         
         public int LastWeightId { get => weight; set { weight = value; OnPropertyChanged(nameof(LastWeightId)); } }
 
         /// <summary>
         /// Строка которая представляет информацию о том кастрирован(стерелизван) ли питомцец
         /// </summary>
-        public string ResulteCastString { get => resulteCastString; set { resulteCastString = value; OnPropertyChanged(nameof(ResulteCastString)); } }
+        public string ResulteCastString { get => resulteCastString; set { resulteCastString = value; OnPropertyChanged(nameof(ResulteCastString));} }
+
+        
+
+
 
         [NotMapped]
         public Weight WeightNow { get => weightNow; set { weightNow = value; OnPropertyChanged(nameof(WeightNow)); } }
-
         [NotMapped]
         public string OutAge
         {
@@ -107,11 +115,15 @@ namespace Digital_Pet_Passport.Model
         }
         [NotMapped]
         public string WordCastration { get => wordCastration; set { wordCastration = value; OnPropertyChanged(nameof(WordCastration)); } }
+
+
+
         public Animal()
         {
             BirthDay = new BirthDay();
             HistoryWeight = new System.Collections.ObjectModel.ObservableCollection<Weight>();
             Manipulatons = new System.Collections.ObjectModel.ObservableCollection<Manipulaton>();
+            Markers = new System.Collections.ObjectModel.ObservableCollection<Marker>();
             WeightNow = new Weight();
             Weight searchActivWeight = HistoryWeight?.FirstOrDefault(w => w.IsActive);
             if (searchActivWeight != null) WeightNow = searchActivWeight;
@@ -129,10 +141,16 @@ namespace Digital_Pet_Passport.Model
         {
             BirthDay = new BirthDay();
             BirthDay.Animal = this;
+            ChangeCastration += Animal_ChangeCastration;
         
         }
 
-        
+        private void Animal_ChangeCastration()
+        {
+            AddMarker(ResulteCastString, OtherModels.PathImgPets.PathScissors);
+        }
+
+
 
         /// <summary>
         /// Добавляет новую отмету о весе животного
@@ -202,6 +220,20 @@ namespace Digital_Pet_Passport.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
+        }
+        /// <summary>
+        /// Добавляет маркер с указанным названием и изображением в список маркеров. Так же произваодит проверку на наличие одиниковых марок перед добавлением
+        /// </summary>
+        /// <param name="name">название новой марки</param>
+        /// <param name="pathImage">путь к изображению новой марки</param>
+        public void AddMarker(string name, string pathImage)
+        {
+            if (Markers.Where(m => m.PathImageMarker != pathImage && m.NameMarker != name).Count() == 0)
+            {
+                Markers.Add(new Marker() { NameMarker = name, PathImageMarker = pathImage });
+                AddingNewMark?.Invoke();
+            }
+            
         }
 
     }

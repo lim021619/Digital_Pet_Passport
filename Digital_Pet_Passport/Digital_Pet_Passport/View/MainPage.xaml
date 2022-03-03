@@ -129,6 +129,17 @@
                                 </StackLayout>
 
 
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Margin="0, 0, 10, 0">
+                                            <Image IsVisible="{Binding Syringe, Mode=OneWay}" Source="syringe.png" WidthRequest="30" HeightRequest="30"></Image>
+                                            <Image IsVisible="{Binding Danger_Rabies, Mode=OneWay}" Source="rabies.png" WidthRequest="30" HeightRequest="30"></Image>
+                                            <Image IsVisible="{Binding Syringe_Rabies, Mode=OneWay}" Source="rabies_Syringe.png" WidthRequest="30" HeightRequest="30" ></Image>
+                                            <Image IsVisible="{Binding Syringe_Tick, Mode=OneWay}" Source="Stop_Tick.png" WidthRequest="30" HeightRequest="30"></Image>
+                                            <Image IsVisible="{Binding Danger_Tick, Mode=OneWay}" Source="Tick.png" WidthRequest="30" HeightRequest="30"></Image>
+                                            <Image IsVisible="{Binding Castration, Mode=OneWay}" Source="scissors.png" WidthRequest="30" HeightRequest="30"></Image>
+                                        </StackLayout>
+                                    </StackLayout>
+                                
                                     <!--<Frame HorizontalOptions="End" Margin="0, 20, 0, 0" BackgroundColor="White"
                                 CornerRadius="10" HasShadow="False" BorderColor="#FF755B" Padding="10">
                                         <Label TextColor="#FF755B" FontSize="20" Text="Просмотр"></Label>

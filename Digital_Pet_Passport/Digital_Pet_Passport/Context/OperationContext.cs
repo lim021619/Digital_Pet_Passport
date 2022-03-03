@@ -213,6 +213,7 @@ namespace Digital_Pet_Passport.Context
                         ?.Include(p => p.AvatarObject)
                         ?.Include(p => p.Images)
                         ?.Include(p => p.HistoryWeight)
+                        ?.Include(p => p.Markers)
                         ?.ToList();
                 else
                 {

@@ -129,7 +129,7 @@
                                 </StackLayout>
 
 
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal" >
                                         <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Margin="0, 0, 10, 0">
                                             <Image IsVisible="{Binding Syringe, Mode=OneWay}" Source="syringe.png" WidthRequest="30" HeightRequest="30"></Image>
                                             <Image IsVisible="{Binding Danger_Rabies, Mode=OneWay}" Source="rabies.png" WidthRequest="30" HeightRequest="30"></Image>

@@ -6,8 +6,8 @@
 
 
 
-    <ScrollView Padding="15">
-        <StackLayout Margin="15">
+    <ScrollView>
+        <StackLayout >
 
             <Frame HasShadow="True">
                 <StackLayout>
@@ -76,7 +76,7 @@
                 </StackLayout>
             </Frame>
 
-            <Grid>
+            <Grid HorizontalOptions="FillAndExpand" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
                     <RowDefinition Height="150"/>
@@ -85,18 +85,61 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                
 
-                <Frame Grid.Column="0">
-
+                <Frame Grid.Column="0" BorderColor="#FF755B">
+                    <StackLayout>
+                        <ImageButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                           Source="ChartsWeightnew.png"
+                           HeightRequest="100" WidthRequest="100" 
+                           Aspect="AspectFill"
+                           BackgroundColor="Transparent"
+                           ></ImageButton>
+                        <Label FontSize="16" FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                               
+                               Text="Вес"></Label>
+                    </StackLayout>
+                    
                 </Frame>
-                <Frame Grid.Column="1">
-
+                <Frame Grid.Column="1" BorderColor="#FF755B">
+                    <StackLayout>
+                        <ImageButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                           Source="syringe.png"
+                           HeightRequest="100" WidthRequest="100" 
+                           Aspect="AspectFill"
+                           BackgroundColor="Transparent"
+                           ></ImageButton>
+                        <Label FontSize="16" FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                               Text="Прививки"></Label>
+                    </StackLayout>
                 </Frame>
-                <Frame Grid.Row="1">
-
+                <Frame Grid.Row="1" BorderColor="#FF755B">
+                    <StackLayout>
+                        <ImageButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                           Source="chick_Offspring.png"
+                           HeightRequest="100" WidthRequest="100" 
+                           Aspect="AspectFill"
+                           BackgroundColor="Transparent"
+                           ></ImageButton>
+                        <Label FontSize="16" FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                               Text="Потомство"></Label>
+                    </StackLayout>
                 </Frame>
-                <Frame Grid.Row="1" Grid.Column="1">
-
+                <Frame Grid.Row="1" Grid.Column="1" BorderColor="#FF755B">
+                    <StackLayout>
+                        <ImageButton HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                           Source="coronavirus.png"
+                           HeightRequest="100" WidthRequest="100" 
+                           Aspect="AspectFill"
+                           BackgroundColor="Transparent"
+                           ></ImageButton>
+                        <Label FontSize="16" FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                               Text="Болезни"></Label>
+                    </StackLayout>
                 </Frame>
             </Grid>
 
